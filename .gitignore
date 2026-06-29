@@ -1,4 +1,7 @@
 .DS_Store
+.claude/
+gen_hero.sh
+gen_refs.sh
 node_modules/
 .env
 .env.*
