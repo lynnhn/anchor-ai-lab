@@ -84,7 +84,7 @@
 .hero .portrait__cross::before,.hero .portrait__cross::after{transform:none;}
 .hero .portrait__cross::before,
 .hero .portrait__cross::after{background:rgba(201,192,178,.95);opacity:1;}
-.hero .portrait__cross--tl{top:66px;left:20px;}
+.hero .portrait__cross--tl{top:94px;left:58px;}
 .hero .portrait__cross--tl::before{
   top:0;left:calc(var(--corner-overhang) * -1);
   width:calc(100% + var(--corner-overhang));height:1px;
@@ -93,7 +93,7 @@
   top:calc(var(--corner-overhang) * -1);left:0;
   width:1px;height:calc(100% + var(--corner-overhang));
 }
-.hero .portrait__cross--br{right:108px;bottom:-18px;}
+.hero .portrait__cross--br{right:150px;bottom:8px;}
 .hero .portrait__cross--br::before{
   top:auto;left:auto;right:calc(var(--corner-overhang) * -1);bottom:0;
   width:calc(100% + var(--corner-overhang));height:1px;
