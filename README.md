@@ -6,4 +6,4 @@ Live: [sac-ai.com](https://sac-ai.com)
 
 ## Demo
 
-[![Sac website demo](./assets/demo-poster.jpg)](./assets/demo.mp4)
+[![Sac website demo](./assets/demo.gif)](./assets/demo.mp4)
