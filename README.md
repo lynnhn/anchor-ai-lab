@@ -7,5 +7,3 @@ Live: [sac-ai.com](https://sac-ai.com)
 ## Demo
 
 [![Sac website demo](./assets/demo-poster.jpg)](./assets/demo.mp4)
-
-点击封面查看演示视频：[assets/demo.mp4](./assets/demo.mp4)
