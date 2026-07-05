@@ -2,6 +2,15 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
+a.is-disabled,
+a[aria-disabled="true"]{
+  cursor:default;
+  opacity:.72;
+}
+a.is-disabled .arr,
+a[aria-disabled="true"] .arr{
+  transform:none !important;
+}
 html,body{overflow-x:hidden;}
 main{position:relative;z-index:2;}
 
@@ -38,6 +47,7 @@ main{position:relative;z-index:2;}
 }
 .nav__github svg{width:15px;height:15px;display:block;}
 .nav__github:hover{color:var(--accent);transform:translateY(-1px);}
+.nav__github.is-disabled:hover{color:var(--ink);transform:none;}
 .nav__links a.is-active{color:var(--ink);}
 .nav__links a.is-active::after{
   content:"";display:block;height:1px;background:var(--accent);
@@ -104,7 +114,7 @@ main{position:relative;z-index:2;}
   .cross{display:none;}
 
   .nav{padding:0 var(--pad-x);}
-  .nav__links{gap:10px;font-size:9px;}
+  .nav__links{display:none;}
 
   .btn{white-space:nowrap;}
   .btn .arr{flex:none;}

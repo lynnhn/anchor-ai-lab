@@ -1,33 +1,31 @@
-/* ═══════════ Sac 编辑大刊站 — 交互与动效 ═══════════ */
-
-/* 外链数据(集中维护;U4/U5 接入)*/
 const LINKS = {
   articles: {
-    "01": "https://x.com/Saccc_c/status/2030909809676149098", // 当未来可以被模拟
-    "02": "https://x.com/Saccc_c/status/2051852464400261429", // Codex + HyperFrames
-    "03": "https://x.com/Saccc_c/status/2039280139046154325", // GitHub 搜索篇
-    "04": "https://x.com/Saccc_c/status/2058057029810594206", // Codex 基础篇
+    "01": "#build",
+    "02": "#build",
+    "03": "../docs/AI_TOOL_REVIEWS.md",
+    "04": "#build",
   },
   social: {
-    x:        "https://x.com/Saccc_c",
-    telegram: "https://t.me/Sacccgx",          // 频道
-    telegramDM:"https://t.me/Sacccc_c",        // 私信
-    xiaohongshu:"https://www.xiaohongshu.com/user/profile/62bac747000000001501e21a",
-    douyin:null, bilibili:null, youtube:null,  // SOON
+    x: null,
+    telegram: null,
+    telegramDM: null,
+    redbook: null,
+    douyin: null,
+    bilibili: null,
+    youtube: null,
   },
-  email: "sacbeflame@gmail.com",
+  email: null,
 };
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 const hasGSAP = typeof window.gsap !== "undefined";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add("is-ready"); // 兜底:无 JS 动效也能看到内容
+  document.body.classList.add("is-ready");
 
   if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
 
   if (hasGSAP && !reduceMotion) {
-    /* ── ① Landing 入场:文字逐行浮现 ── */
     const heroItems = gsap.utils.toArray("#hero [data-reveal]");
     gsap.set(heroItems, { opacity: 0, y: 20 });
     gsap.to(heroItems, {
@@ -35,9 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
       stagger: 0.14, delay: 0.25,
     });
 
-    /* ── 头像:粒子从左聚合 → 揭示清晰头像 → 左缘溶解(见 js/particles.js)── */
-
-    /* ── ② 后续区块:滚动进入时,内容逐项浮现(放慢)── */
     ["#about", "#writing", "#shoot", "#build", "#contact"].forEach((sel) => {
       const section = document.querySelector(sel);
       const items = gsap.utils.toArray(sel + " [data-reveal]");
@@ -50,8 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ── 导航高亮:当前区块 ── */
-  const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"VIDEO", build:"BUILD", contact:"CONTACT" };
+  const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"TEST", build:"BUILD", contact:"CONTACT" };
   const links = [...document.querySelectorAll(".nav__links a")];
   const setActive = (label) => {
     links.forEach(a =>
@@ -67,10 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ── 固定导航/装饰反色:仅当"导航线"正落在深色 Shoot 区段内时 ── */
   const shootEl = document.getElementById("shoot");
   if (shootEl) {
-    const NAV_LINE = 36; // 约导航条中线
+    const NAV_LINE = 36;
     let raf = 0;
     const syncDark = () => {
       raf = 0;
@@ -84,12 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
     syncDark();
   }
 
-  /* ── 平滑滚动 ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener("click", (e) => {
+      if (a.matches(".is-disabled, [aria-disabled='true']")) {
+        e.preventDefault();
+        return;
+      }
       const id = a.getAttribute("href").slice(1);
       const el = document.getElementById(id);
       if (el) { e.preventDefault(); el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); }
     });
+  });
+
+  document.querySelectorAll("a.is-disabled, a[aria-disabled='true']").forEach(a => {
+    a.addEventListener("click", (e) => e.preventDefault());
   });
 });

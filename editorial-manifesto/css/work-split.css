@@ -95,6 +95,7 @@
   transition:transform .6s var(--ease);
 }
 .feat:hover .feat__img{transform:scale(1.02);}
+.feat.is-disabled:hover .feat__img{transform:none;}
 .feat__tick{display:none;}
 
 .feat__body{
@@ -130,6 +131,7 @@
 }
 .feat__read .arr{transition:transform .25s var(--ease);}
 .feat:hover .feat__read .arr{transform:translateX(5px);}
+.feat.is-disabled:hover .feat__read .arr{transform:none;}
 
 .writing__list{
   position:relative;
@@ -157,6 +159,7 @@
 .wpost:first-child{border-top:1px solid var(--line);}
 .writing__list .wpost:last-child{border-bottom:1px solid var(--line);}
 .wpost:hover{background:rgba(240,101,46,.075);}
+.wpost.is-disabled:hover{background:transparent;}
 .wpost__idx{
   font-family:var(--serif);font-size:clamp(58px,4.6vw,78px);
   line-height:.8;color:#a9a39a;font-weight:400;
@@ -167,6 +170,14 @@
   line-height:1.28;color:var(--ink);transition:color .25s;
 }
 .wpost:hover .wpost__title{color:var(--accent);}
+.wpost.is-disabled:hover .wpost__title{color:var(--ink);}
+.wpost__dek{
+  margin-top:8px;
+  font-family:var(--sans-cjk);
+  font-size:12px;
+  line-height:1.55;
+  color:var(--muted);
+}
 .wpost__meta{
   display:flex;align-items:center;gap:16px;
   margin-top:16px;
@@ -189,10 +200,12 @@
   transition:color .25s,border-color .25s;
 }
 .writing__all:hover{color:var(--accent);border-color:var(--accent);}
+.writing__all.is-disabled:hover{color:var(--muted);border-color:var(--line);}
 .writing__all .arr{transition:transform .25s var(--ease);}
 .writing__all:hover .arr{transform:translateX(5px);}
+.writing__all.is-disabled:hover .arr{transform:none;}
 
-/* ───────────── SHOOT / VIDEO ─────────────
+/* ───────────── TEST ─────────────
    注意:不翻整个 body 背景(各 section 自带背景,深色只属于 .shoot)。
    theme-shoot 只在"导航线落在 Shoot 内"时反色 nav/rail/准星,避免把上一屏染黑。 */
 body.theme-shoot .nav{
@@ -343,6 +356,7 @@ body.theme-shoot .cross::after{
   transition:all .3s var(--ease);
 }
 .build__cta:hover{color:var(--accent);}
+.build__cta.is-disabled:hover{color:var(--ink);}
 .build__cta-text{white-space:nowrap;flex:none;}
 .build__cta .github-mark{
   width:16px;height:16px;flex:0 0 16px;
@@ -350,6 +364,7 @@ body.theme-shoot .cross::after{
 }
 .build__cta .arr{transition:transform .25s var(--ease);}
 .build__cta:hover .arr{transform:translateX(5px);}
+.build__cta.is-disabled:hover .arr{transform:none;}
 
 .build__terminal{
   position:absolute;left:47.6%;top:29vh;z-index:2;
@@ -488,6 +503,7 @@ body.theme-shoot .cross::after{
 
 .build__queue{
   position:absolute;left:48%;top:79.6vh;z-index:1;
+  max-width:min(46vw,760px);
   font-family:'SF Mono','Menlo','Roboto Mono',monospace;
   color:#b09a8b;
 }

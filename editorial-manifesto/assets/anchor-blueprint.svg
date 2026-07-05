@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-label="Anchor AI Lab blueprint placeholder">
+  <rect width="900" height="900" fill="transparent"/>
+  <g fill="none" stroke="#1a1714" opacity=".55">
+    <path d="M450 178v500" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="450" cy="278" r="82" stroke-width="20"/>
+    <path d="M295 542c40 102 108 153 155 153s115-51 155-153" stroke-width="20" stroke-linecap="round"/>
+    <path d="M255 620h390" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g stroke="#f0652e" stroke-width="4" opacity=".75">
+    <path d="M130 130h130M130 130v130M640 130h130M770 130v130M130 640v130M130 770h130M770 640v130M640 770h130"/>
+    <circle cx="450" cy="450" r="255" fill="none" stroke-dasharray="8 14"/>
+  </g>
+</svg>

@@ -1,4 +1,3 @@
-/* ═══════════ Build 终端:流式打字 + 编译进度条 ═══════════ */
 (() => {
   const root = document.querySelector("[data-build]");
   if (!root) return;
@@ -11,14 +10,12 @@
   const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
   const LINES = [
-    "$ sac build --in-public",
-    "10:12:01  checking workspace",
-    "10:12:02  loading modules",
-    "10:12:03  resolving dependencies",
-    "10:12:05  generating bundles",
-    "10:12:07  optimizing assets",
-    "10:12:08  writing artifacts",
-    "10:12:09  linking ideas",
+    "$ anchor lab --map",
+    "PLAN      ACE",
+    "DRAFT     TemuCanvas",
+    "BUILDING  AI PPT Workflow",
+    "REVIEW    AI Tool Reviews",
+    "NOTE      workflows before products",
   ];
   const FULL = LINES.join("\n");
   const RUN_MS = 7200;
@@ -37,11 +34,11 @@
 
   const setLabel = (p) => {
     if (!label) return;
-    if (p < 16) label.textContent = "booting...";
-    else if (p < 68) label.textContent = "compiling...";
-    else if (p < 92) label.textContent = "linking...";
-    else if (p < 100) label.textContent = "finalizing...";
-    else label.textContent = "compiled";
+    if (p < 16) label.textContent = "planning...";
+    else if (p < 68) label.textContent = "drafting...";
+    else if (p < 92) label.textContent = "reviewing...";
+    else if (p < 100) label.textContent = "mapping...";
+    else label.textContent = "building";
   };
 
   const render = (now) => {
