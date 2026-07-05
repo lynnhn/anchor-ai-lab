@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="AI workflow placeholder">
+  <rect width="640" height="420" fill="#efe4d5"/>
+  <g fill="#1a1714">
+    <circle cx="140" cy="210" r="44"/>
+    <circle cx="320" cy="210" r="44"/>
+    <circle cx="500" cy="210" r="44"/>
+  </g>
+  <g stroke="#f0652e" stroke-width="14" stroke-linecap="round">
+    <path d="M190 210h80"/>
+    <path d="M370 210h80"/>
+  </g>
+  <text x="320" y="335" text-anchor="middle" fill="#1a1714" font-family="Inter, Arial, sans-serif" font-size="34" letter-spacing="5">WORKFLOW</text>
+</svg>

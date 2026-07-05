@@ -1,0 +1,13 @@
+---
+const { href, logo, name, count = "Building", status = "Building" } = Astro.props;
+---
+
+<li class="srow">
+  <a href={href}>
+    <span class="srow__logo srow__logo--entry">{logo}</span>
+    <span class="srow__handle">{name}</span>
+    <span class="srow__count">{count}</span>
+    <span class="srow__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <span class="srow__status">{status}</span>
+  </a>
+</li>

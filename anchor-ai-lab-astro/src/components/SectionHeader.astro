@@ -1,0 +1,8 @@
+---
+const { title, kicker } = Astro.props;
+---
+
+<header class="writing__head">
+  <h2 class="writing__title" data-reveal>{title}</h2>
+  {kicker && <div class="writing__cats" data-reveal set:html={kicker} />}
+</header>

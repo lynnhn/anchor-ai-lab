@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="ACE project placeholder">
+  <rect width="640" height="420" fill="#f4efe6"/>
+  <rect x="48" y="48" width="544" height="324" fill="#1a1714"/>
+  <path d="M320 112v160" stroke="#f0652e" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="320" cy="152" r="36" fill="none" stroke="#f4efe6" stroke-width="12"/>
+  <text x="320" y="326" text-anchor="middle" fill="#f4efe6" font-family="Inter, Arial, sans-serif" font-size="54" letter-spacing="8">ACE</text>
+</svg>

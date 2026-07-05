@@ -1,0 +1,335 @@
+---
+import Layout from "../components/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ChannelCard from "../components/ChannelCard.astro";
+import WritingCard from "../components/WritingCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Footer from "../components/Footer.astro";
+
+const channels = [
+  { href: "#writing", logo: "W", name: "Writing", count: "Building", status: "Building" },
+  { href: "#build", logo: "P", name: "Projects", count: "Building", status: "Building" },
+  { href: "/docs/AI_TOOL_REVIEWS.md", logo: "T", name: "Tool Reviews", count: "Draft", status: "Draft" },
+  { href: "#shoot", logo: "V", name: "Video Notes", count: "Later", status: "Later" },
+  { href: "#contact", logo: "C", name: "WeChat", count: "Later", status: "Later" },
+];
+
+const writing = [
+  {
+    href: "#build",
+    index: "02",
+    title: "我如何用 Agent 协作<br />完成真实项目",
+    dek: "ChatGPT、Codex、Claude Code、WorkBuddy 分工协作，再用 Git / Jujutsu 保留版本事实。",
+    tag: "Agent",
+    status: "Draft",
+    image: "/images/anchor-work-ace.svg",
+  },
+  {
+    href: "/docs/AI_TOOL_REVIEWS.md",
+    index: "03",
+    title: "开源工具评测：<br />只看真实工作流价值",
+    tag: "工具评测",
+    status: "Draft",
+    image: "/images/anchor-work-reviews.svg",
+  },
+  {
+    href: "#build",
+    index: "04",
+    title: "为什么普通人也需要<br />一套 AI 工程协作方法",
+    dek: "AI 放大了普通人的能力边界，也放大了项目混乱。只靠提示词不够，还需要轻量工程协作方法。",
+    tag: "Workflow",
+    status: "Coming soon",
+    image: "/images/anchor-work-workflow.svg",
+  },
+];
+
+const projects = [
+  {
+    href: "#build",
+    text: "ACE / Anchor Capability Engineering: In Progress · 我的 AI 工程协作方法论底座，用于组织 Agent 参与复杂任务、保留工程事实、完成最少充分验收，并把有效经验沉淀成 Skill。AI Engineering / Agent Workflow / Methodology / Skill Foundry",
+  },
+  {
+    href: "#build",
+    text: "TemuCanvas: 图像处理与商品图自动化工作流。这个项目基于 ACE 方法论组织推进，用于数据分层、候选生成、人工复核、错误放行控制、失败诊断和版本冻结。",
+  },
+  {
+    href: "#build",
+    text: "AI PPT Workflow: 工程化 AI 演示文稿制作流程。这个项目基于 ACE 的分阶段工程流程推进，从任务预检、内容战略、逐页计划到静态版验收和动效增量施工。",
+  },
+  {
+    href: "/docs/AI_TOOL_REVIEWS.md",
+    text: "AI Tool Reviews: Building · 开源 AI 工具与生产力方案评测记录。这个栏目使用 ACE 的工作流视角评估 AI 工具、开源项目和生产力方案是否值得进入真实工作流。",
+  },
+];
+---
+
+<Layout>
+  <Header />
+
+  <div class="rail" aria-hidden="true"><i></i><i></i><i></i></div>
+  <span class="cross cross--tr" aria-hidden="true"></span>
+  <span class="cross cross--bl" aria-hidden="true"></span>
+  <span class="cross cross--br" aria-hidden="true"></span>
+
+  <main>
+    <Hero />
+
+    <section class="about" id="about">
+      <div class="about__left">
+        <h2 class="about__title" data-reveal>About Lab</h2>
+        <div class="about__bio" data-reveal>
+          <p>我正在构建 Anchor AI Lab，一个记录个人 AI 工程实践、Agent 协作、工具评测与工作流构建的公开档案站。</p>
+          <p>其中 ACE / Anchor Capability Engineering 是底层方法论，用来组织 AI Agent 参与真实复杂项目。</p>
+          <p>少一点概念包装，多一点真实搭建、测试和复盘。</p>
+        </div>
+
+        <figure class="blueprint" data-reveal>
+          <span class="bp__target bp__target--tl"></span>
+          <span class="bp__target bp__target--tr"></span>
+          <span class="bp__target bp__target--bl"></span>
+          <span class="bp__target bp__target--br"></span>
+          <span class="bp__plus" style="top:30%;left:25%">+</span>
+          <span class="bp__plus" style="top:70%;left:30%">+</span>
+          <span class="bp__plus" style="top:34%;left:62%">+</span>
+          <span class="bp__plus" style="top:60%;left:58%">+</span>
+          <span class="bp__ring" aria-hidden="true"></span>
+
+          <img class="bp__img" src="/images/anchor-blueprint.svg" alt="Anchor AI Lab blueprint placeholder" />
+
+          <div class="bp__anno bp__anno--tl">
+            <p class="bp__lead"><i class="bp__sq"></i> AI ENGINEERING / WORKFLOW</p>
+            <span class="bp__hr"></span>
+            <p class="bp__mono">WRITE · TEST · BUILD</p>
+          </div>
+          <div class="bp__anno bp__anno--spec">
+            <p class="bp__mono bp__mono--key">SPEC.001</p>
+            <p class="bp__mono">FOCUS&nbsp;&nbsp;: AI ENGINEERING</p>
+            <p class="bp__mono">TOPIC&nbsp;&nbsp;: AGENTS &amp; TOOLS</p>
+            <p class="bp__mono">FORMAT&nbsp;: NOTES / REVIEWS</p>
+            <p class="bp__mono">PRODUCT: WORKFLOW</p>
+            <p class="bp__mono">VALUE&nbsp;&nbsp;: REUSABLE</p>
+          </div>
+          <div class="bp__anno bp__anno--ver">
+            <p class="bp__mono bp__mono--key">VER. 1.0.0</p>
+            <p class="bp__mono">LOCAL / REMOTE</p>
+            <p class="bp__mono bp__mono--mt">LAB NODE</p>
+            <p class="bp__mono">WORKFLOW MAP</p>
+          </div>
+          <div class="bp__anno bp__anno--tr">
+            <p class="bp__mono bp__mono--key">ID // LAB NODE</p>
+          </div>
+          <div class="bp__anno bp__anno--cat">
+            <p class="bp__mono">CATEGORY</p>
+            <p class="bp__mono">ENGINEERING</p>
+            <span class="bp__hatch" aria-hidden="true"></span>
+          </div>
+          <div class="bp__anno bp__anno--focus">
+            <p class="bp__mono bp__mono--key">FOCUS</p>
+            <p class="bp__mono">· AGENT</p>
+            <p class="bp__mono">· OPEN SOURCE</p>
+            <p class="bp__mono">· WORKFLOW</p>
+          </div>
+          <div class="bp__anno bp__anno--est">
+            <p class="bp__mono">NO FIXED LOCATION</p>
+          </div>
+          <figcaption class="bp__coords">LOCAL / REMOTE&nbsp;&nbsp;&nbsp;&nbsp;WORKFLOW MAP&nbsp;&nbsp;&nbsp;&nbsp;NO FIXED LOCATION</figcaption>
+        </figure>
+      </div>
+
+      <div class="about__right">
+        <div class="flow" data-reveal>
+          <div class="flow__node">
+            <span class="flow__zh">写</span>
+            <span class="flow__en">WRITE</span>
+          </div>
+          <span class="flow__link"></span>
+          <div class="flow__node">
+            <span class="flow__zh">测</span>
+            <span class="flow__en">TEST</span>
+          </div>
+          <span class="flow__link"></span>
+          <div class="flow__node">
+            <span class="flow__zh">建</span>
+            <span class="flow__en">BUILD</span>
+          </div>
+        </div>
+
+        <div class="signal" data-reveal>
+          <div class="signal__head">
+            <h3 class="signal__title">Lab Channels</h3>
+            <span class="signal__legend">公开记录入口</span>
+          </div>
+          <ul class="signal__list">
+            {channels.map((channel) => <ChannelCard {...channel} />)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="writing" id="writing">
+      <header class="writing__head">
+        <h2 class="writing__title" data-reveal>Writing</h2>
+        <div class="writing__cats" data-reveal>
+          <span class="writing__cat-title">写 · WRITE</span>
+          <span class="writing__cat-row">
+            <span class="writing__cat-current">写</span>
+            <i class="dotsep"></i>
+            <span class="cat cat--soon"><b class="cat__zh">测</b><i class="cat__soon">SOON</i></span>
+            <i class="dotsep"></i>
+            <span class="cat cat--soon"><b class="cat__zh">建</b><i class="cat__soon">SOON</i></span>
+          </span>
+        </div>
+      </header>
+
+      <div class="writing__grid">
+        <a class="feat" href="#build" data-reveal>
+          <span class="feat__frame">
+            <img class="feat__img" src="/images/anchor-writing-feature.svg" alt="" loading="lazy" />
+            <span class="feat__tick feat__tick--tl"></span>
+            <span class="feat__tick feat__tick--br"></span>
+          </span>
+          <div class="feat__body">
+            <span class="feat__idx">01</span>
+            <h3 class="feat__title">ACE 是什么</h3>
+            <p class="feat__dek">解释 ACE / Anchor Capability Engineering 的基本定位、核心组成和项目价值。它不是单个工具，而是一套组织 AI Agent 参与复杂任务的工作方式。</p>
+            <div class="feat__meta"><span class="feat__tag">AI Engineering</span><span class="dotsep"></span><span>Building</span></div>
+            <span class="feat__read">查看方法 <span class="arr">→</span></span>
+          </div>
+        </a>
+
+        <div class="writing__list">
+          {writing.map((item) => <WritingCard {...item} />)}
+        </div>
+      </div>
+
+      <a class="writing__all" href="#writing" data-reveal>全部笔记 <span class="arr">→</span></a>
+    </section>
+
+    <section class="shoot" id="shoot">
+      <div class="shoot__stage" data-reveal>
+        <span class="shoot__bg" style="background-image:url('/images/anchor-shoot-bg.svg')"></span>
+        <div class="shoot__topbar">
+          <span class="shoot__rec"><i></i> TEST LOG</span>
+          <span class="shoot__ep">WORKFLOW NOTES</span>
+        </div>
+        <div class="shoot__copy">
+          <h3 class="shoot__center">把 AI 工具放进真实工作流里</h3>
+          <p class="shoot__soon">记录提示词、Agent、工具链和工作流在真实任务里的表现。</p>
+        </div>
+        <div class="shoot__player">
+          <span class="shoot__play">•</span>
+          <span class="shoot__t">Draft</span>
+          <span class="shoot__track"><i></i></span>
+          <span class="shoot__pct">Later</span>
+        </div>
+      </div>
+      <div class="shoot__foot">
+        <div class="shoot__wordwrap">
+          <span class="shoot__kicker" data-reveal>测 · TEST</span>
+          <h2 class="shoot__title" data-reveal>Test</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="build" id="build">
+      <div class="build__git" aria-hidden="true">
+        <span class="git__branch">WORKFLOW&nbsp;&nbsp;MAP ——</span>
+        <span class="git__line"></span>
+        <span class="git__row"><i></i><b>PLAN</b><em>ACE</em></span>
+        <span class="git__row"><i></i><b>DRAFT</b><em>TemuCanvas</em></span>
+        <span class="git__row"><i></i><b>REVIEW</b><em>AI Tool Reviews</em></span>
+        <span class="git__row git__row--head"><i></i><b>BUILDING</b><em>AI PPT Workflow</em></span>
+        <span class="git__row git__row--ghost"><i></i></span>
+        <span class="git__row git__row--ghost"><i></i></span>
+      </div>
+
+      <div class="build__left" data-reveal>
+        <span class="build__kicker">建 · BUILD</span>
+        <h2 class="build__title">Projects</h2>
+        <p class="build__sub"><span class="dot"></span>公开构建中 · 记录工具与流程</p>
+        <a class="build__cta" href="#contact"><span class="build__cta-text">关注项目更新</span><svg class="github-mark" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18.92-.26 1.9-.38 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.42-2.69 5.38-5.25 5.67.42.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg><span class="arr">→</span></a>
+      </div>
+
+      <div class="build__terminal" data-build data-reveal>
+        <div class="term__bar">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="term__body">
+          <pre class="term__code" data-typed aria-hidden="true">$ anchor lab --map
+PLAN      ACE
+DRAFT     TemuCanvas
+BUILDING  AI PPT Workflow
+REVIEW    AI Tool Reviews
+NOTE      workflows before products
+</pre>
+          <div class="term__compile">
+            <span class="term__ver">v0.1.0 · <span data-compile-label>planning...</span></span>
+            <div class="term__bar2"><i data-progress-bar style="width:0%"></i></div>
+            <span class="term__pct" data-progress-num>0%</span>
+          </div>
+        </div>
+      </div>
+
+      <span class="build__plus" aria-hidden="true">+</span>
+      <div class="build__measure build__measure--area" aria-hidden="true">
+        <span></span><b>LAB NODE</b><em>480×220</em>
+      </div>
+      <div class="build__measure build__measure--progress" aria-hidden="true">
+        <span></span><b>PROGRESS</b><em data-progress-measure>0%</em>
+      </div>
+      <div class="build__queue" aria-hidden="true">
+        <span class="queue__label">queued</span>
+        <span class="queue__brace">&#123;</span>
+        <ul>
+          {projects.map((project) => <ProjectCard {...project} />)}
+        </ul>
+      </div>
+      <div class="build__ruler" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i>
+        <span>0</span><span>25</span><span>50</span><span>75</span><span>100</span>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact__center">
+        <div class="contact__kicker" data-reveal><span class="ln"></span>GET IN TOUCH / 联系<span class="ln"></span></div>
+        <h2 class="contact__title" data-reveal>
+          Contact
+          <svg class="contact__underline" viewBox="0 0 360 18" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M12 13 Q 180 3, 348 11" fill="none" stroke="#F0652E" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+        </h2>
+        <p class="contact__sub" data-reveal>欢迎交流 AI 工程、Agent 协作、开源工具或个人工作流。</p>
+        <p class="contact__status" data-reveal><span class="pulse"></span>联系方式整理中 · Coming soon</p>
+      </div>
+
+      <div class="contact__marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="marquee__set">AI 工程实践 · Agent 协作 · 开源工具评测 · 个人工作流构建 · AI 工程实践 · Agent 协作 · 开源工具评测 · 个人工作流构建 · </span>
+          <span class="marquee__set">AI 工程实践 · Agent 协作 · 开源工具评测 · 个人工作流构建 · AI 工程实践 · Agent 协作 · 开源工具评测 · 个人工作流构建 · </span>
+        </div>
+      </div>
+
+      <div class="contact__bar">
+        <a class="cbar__item cbar__item--mail is-disabled" aria-disabled="true">
+          <span class="cbar__lbl">EMAIL</span>
+          <span class="cbar__val cbar__val--mail">Coming soon</span>
+          <span class="cbar__arr">→</span>
+        </a>
+        <a class="cbar__item is-disabled" aria-disabled="true">
+          <span class="cbar__logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M18.9 2H22l-7.3 8.3L23.3 22h-6.8l-5-6.6L5.7 22H2.6l7.8-8.9L1.3 2h6.9l4.5 6 6.2-6Zm-1.2 18h1.7L7 3.8H5.2L17.7 20Z"/></svg></span>
+          <span class="cbar__val">GitHub <em>· Coming soon</em></span>
+          <span class="cbar__arr">→</span>
+        </a>
+        <a class="cbar__item is-disabled" aria-disabled="true">
+          <span class="cbar__logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#29A9EB" d="M21.9 4.3 18.7 20c-.2 1-.9 1.2-1.8.8l-4.9-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5L18 7c.4-.4-.1-.5-.6-.2L6 13.4l-4.9-1.5c-1-.3-1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5Z"/></svg></span>
+          <span class="cbar__val">WeChat <em>· Coming soon</em></span>
+          <span class="cbar__arr">→</span>
+        </a>
+      </div>
+
+      <Footer />
+    </section>
+  </main>
+</Layout>

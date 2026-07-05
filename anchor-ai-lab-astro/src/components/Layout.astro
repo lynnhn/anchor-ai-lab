@@ -1,0 +1,226 @@
+---
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/sections.css";
+import "../styles/work-split.css";
+
+const { title = "Anchor AI Lab - AI engineering practice" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content="Anchor AI Lab - 启锚 · 探索智能边界。记录 AI 工程实践、Agent 协作、开源工具评测与个人工作流构建。" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+SC:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <filter id="duotone" color-interpolation-filters="sRGB">
+          <feColorMatrix type="matrix" values="0.33 0.33 0.33 0 0
+                                                0.33 0.33 0.33 0 0
+                                                0.33 0.33 0.33 0 0
+                                                0    0    0    1 0"></feColorMatrix>
+          <feComponentTransfer color-interpolation-filters="sRGB">
+            <feFuncR type="table" tableValues="0.102 0.941"></feFuncR>
+            <feFuncG type="table" tableValues="0.090 0.396"></feFuncG>
+            <feFuncB type="table" tableValues="0.078 0.180"></feFuncB>
+          </feComponentTransfer>
+        </filter>
+        <filter id="duotone-invert" color-interpolation-filters="sRGB">
+          <feColorMatrix type="matrix" values="0.33 0.33 0.33 0 0
+                                                0.33 0.33 0.33 0 0
+                                                0.33 0.33 0.33 0 0
+                                                0    0    0    1 0"></feColorMatrix>
+          <feComponentTransfer color-interpolation-filters="sRGB">
+            <feFuncR type="table" tableValues="0.941 0.102"></feFuncR>
+            <feFuncG type="table" tableValues="0.396 0.090"></feFuncG>
+            <feFuncB type="table" tableValues="0.180 0.078"></feFuncB>
+          </feComponentTransfer>
+        </filter>
+      </defs>
+    </svg>
+
+    <slot />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script is:inline>
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+      const hasGSAP = typeof window.gsap !== "undefined";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("is-ready");
+
+        if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
+        if (hasGSAP && !reduceMotion) {
+          const heroItems = gsap.utils.toArray("#hero [data-reveal]");
+          gsap.set(heroItems, { opacity: 0, y: 20 });
+          gsap.to(heroItems, {
+            opacity: 1, y: 0, duration: 1, ease: "power3.out",
+            stagger: 0.14, delay: 0.25,
+          });
+
+          ["#about", "#writing", "#shoot", "#build", "#contact"].forEach((sel) => {
+            const section = document.querySelector(sel);
+            const items = gsap.utils.toArray(sel + " [data-reveal]");
+            if (!section || !items.length) return;
+            gsap.set(items, { opacity: 0, y: 30 });
+            gsap.to(items, {
+              opacity: 1, y: 0, duration: 1.4, ease: "power3.out", stagger: 0.2,
+              scrollTrigger: { trigger: section, start: "top 76%" },
+            });
+          });
+        }
+
+        const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"TEST", build:"BUILD", contact:"CONTACT" };
+        const links = [...document.querySelectorAll(".nav__links a")];
+        const setActive = (label) => {
+          links.forEach(a =>
+            a.classList.toggle("is-active", !!label && a.textContent.trim() === label));
+        };
+
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) setActive(navMap[e.target.id]); });
+          }, { rootMargin: "-45% 0px -45% 0px" });
+          ["hero","about","writing","shoot","build","contact"].forEach(id => {
+            const el = document.getElementById(id); if (el) io.observe(el);
+          });
+        }
+
+        const shootEl = document.getElementById("shoot");
+        if (shootEl) {
+          const NAV_LINE = 36;
+          let raf = 0;
+          const syncDark = () => {
+            raf = 0;
+            const r = shootEl.getBoundingClientRect();
+            const overDark = r.top <= NAV_LINE && r.bottom >= NAV_LINE;
+            document.body.classList.toggle("theme-shoot", overDark);
+          };
+          const onScroll = () => { if (!raf) raf = requestAnimationFrame(syncDark); };
+          window.addEventListener("scroll", onScroll, { passive: true });
+          window.addEventListener("resize", onScroll, { passive: true });
+          syncDark();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+          a.addEventListener("click", (e) => {
+            if (a.matches(".is-disabled, [aria-disabled='true']")) {
+              e.preventDefault();
+              return;
+            }
+            const id = a.getAttribute("href").slice(1);
+            const el = document.getElementById(id);
+            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); }
+          });
+        });
+
+        document.querySelectorAll("a.is-disabled, a[aria-disabled='true']").forEach(a => {
+          a.addEventListener("click", (e) => e.preventDefault());
+        });
+      });
+    </script>
+    <script is:inline>
+      (() => {
+        const root = document.querySelector("[data-build]");
+        if (!root) return;
+
+        const codeEl = root.querySelector("[data-typed]");
+        const label  = root.querySelector("[data-compile-label]");
+        const bar    = root.querySelector("[data-progress-bar]");
+        const num    = root.querySelector("[data-progress-num]");
+        const measure = document.querySelector("[data-progress-measure]");
+        const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+        const LINES = [
+          "$ anchor lab --map",
+          "PLAN      ACE",
+          "DRAFT     TemuCanvas",
+          "BUILDING  AI PPT Workflow",
+          "REVIEW    AI Tool Reviews",
+          "NOTE      workflows before products",
+        ];
+        const FULL = LINES.join("\n");
+        const RUN_MS = 7200;
+        const HOLD_MS = 700;
+
+        let active = false;
+        let startedAt = 0;
+        let raf = 0;
+
+        const setProgress = (p) => {
+          const v = Math.round(Math.max(0, Math.min(100, p)));
+          if (bar) bar.style.width = v + "%";
+          if (num) num.textContent = v + "%";
+          if (measure) measure.textContent = v + "%";
+        };
+
+        const setLabel = (p) => {
+          if (!label) return;
+          if (p < 16) label.textContent = "planning...";
+          else if (p < 68) label.textContent = "drafting...";
+          else if (p < 92) label.textContent = "reviewing...";
+          else if (p < 100) label.textContent = "mapping...";
+          else label.textContent = "building";
+        };
+
+        const render = (now) => {
+          if (!active) return;
+          if (!startedAt) startedAt = now;
+
+          const elapsed = (now - startedAt) % (RUN_MS + HOLD_MS);
+          const running = elapsed < RUN_MS;
+          const progress = running ? (elapsed / RUN_MS) * 100 : 100;
+          const textProgress = Math.min(1, progress / 92);
+          const typedChars = running ? Math.floor(FULL.length * textProgress) : FULL.length;
+
+          codeEl.textContent = FULL.slice(0, typedChars);
+          setProgress(progress);
+          setLabel(progress);
+
+          raf = requestAnimationFrame(render);
+        };
+
+        const run = () => {
+          if (active) return;
+          if (reduce) {
+            codeEl.textContent = FULL;
+            setProgress(100);
+            setLabel(100);
+            return;
+          }
+          active = true;
+          startedAt = 0;
+          codeEl.textContent = "";
+          setProgress(0);
+          setLabel(0);
+          raf = requestAnimationFrame(render);
+        };
+
+        const pause = () => {
+          active = false;
+          if (raf) cancelAnimationFrame(raf);
+          raf = 0;
+        };
+
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => { e.isIntersecting ? run() : pause(); });
+          }, { rootMargin: "-18% 0px -18% 0px" });
+          io.observe(root);
+        } else {
+          run();
+        }
+      })();
+    </script>
+  </body>
+</html>
