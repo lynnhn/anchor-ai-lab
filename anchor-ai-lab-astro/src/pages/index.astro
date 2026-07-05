@@ -6,62 +6,66 @@ import ChannelCard from "../components/ChannelCard.astro";
 import WritingCard from "../components/WritingCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+
+const byOrder = (a, b) => a.data.order - b.data.order;
+const projectEntries = (await getCollection("projects")).sort(byOrder);
+const writingEntries = (await getCollection("writing")).sort(byOrder);
+const toolEntries = (await getCollection("tools")).sort(byOrder);
+const aiToolReviews = toolEntries.find((entry) => entry.id === "ai-tool-reviews") ?? toolEntries[0];
+const featureWriting = writingEntries.find((entry) => entry.data.order === 1) ?? writingEntries[0];
+const agentWriting = writingEntries.find((entry) => entry.data.order === 2);
+const workflowWriting = writingEntries.find((entry) => entry.data.order === 4);
 
 const channels = [
   { href: "#writing", logo: "W", name: "Writing", count: "Building", status: "Building" },
   { href: "#build", logo: "P", name: "Projects", count: "Building", status: "Building" },
-  { href: "/docs/AI_TOOL_REVIEWS.md", logo: "T", name: "Tool Reviews", count: "Draft", status: "Draft" },
+  { href: aiToolReviews?.data.href ?? "/docs/AI_TOOL_REVIEWS.md", logo: "T", name: "Tool Reviews", count: "Draft", status: "Draft" },
   { href: "#shoot", logo: "V", name: "Video Notes", count: "Later", status: "Later" },
   { href: "#contact", logo: "C", name: "WeChat", count: "Later", status: "Later" },
 ];
 
 const writing = [
-  {
-    href: "#build",
+  agentWriting && {
+    href: agentWriting.data.href ?? "#build",
     index: "02",
-    title: "我如何用 Agent 协作<br />完成真实项目",
-    dek: "ChatGPT、Codex、Claude Code、WorkBuddy 分工协作，再用 Git / Jujutsu 保留版本事实。",
-    tag: "Agent",
-    status: "Draft",
-    image: "/images/anchor-work-ace.svg",
+    title: agentWriting.data.title,
+    dek: agentWriting.data.summary,
+    tag: agentWriting.data.category,
+    status: agentWriting.data.status,
+    image: agentWriting.data.image ?? "/images/anchor-work-ace.svg",
   },
-  {
-    href: "/docs/AI_TOOL_REVIEWS.md",
+  aiToolReviews && {
+    href: aiToolReviews.data.href ?? "/docs/AI_TOOL_REVIEWS.md",
     index: "03",
     title: "开源工具评测：<br />只看真实工作流价值",
     tag: "工具评测",
     status: "Draft",
-    image: "/images/anchor-work-reviews.svg",
+    image: aiToolReviews.data.image ?? "/images/anchor-work-reviews.svg",
   },
-  {
-    href: "#build",
+  workflowWriting && {
+    href: workflowWriting.data.href ?? "#build",
     index: "04",
-    title: "为什么普通人也需要<br />一套 AI 工程协作方法",
-    dek: "AI 放大了普通人的能力边界，也放大了项目混乱。只靠提示词不够，还需要轻量工程协作方法。",
-    tag: "Workflow",
-    status: "Coming soon",
-    image: "/images/anchor-work-workflow.svg",
+    title: workflowWriting.data.title,
+    dek: workflowWriting.data.summary,
+    tag: workflowWriting.data.category,
+    status: workflowWriting.data.status,
+    image: workflowWriting.data.image ?? "/images/anchor-work-workflow.svg",
   },
-];
+].filter(Boolean);
 
-const projects = [
-  {
-    href: "#build",
-    text: "ACE / Anchor Capability Engineering: In Progress · 我的 AI 工程协作方法论底座，用于组织 Agent 参与复杂任务、保留工程事实、完成最少充分验收，并把有效经验沉淀成 Skill。AI Engineering / Agent Workflow / Methodology / Skill Foundry",
+const projectCards = [
+  ...projectEntries.map((entry, index) => ({
+    href: entry.data.href ?? "#build",
+    text: index === 0
+      ? `${entry.data.title}: ${entry.data.status} · ${entry.data.summary}${entry.data.tags.length ? ` ${entry.data.tags.join(" / ")}` : ""}`
+      : `${entry.data.title}: ${entry.data.summary}`,
+  })),
+  aiToolReviews && {
+    href: aiToolReviews.data.href ?? "/docs/AI_TOOL_REVIEWS.md",
+    text: `${aiToolReviews.data.title}: ${aiToolReviews.data.status} · ${aiToolReviews.data.summary}`,
   },
-  {
-    href: "#build",
-    text: "TemuCanvas: 图像处理与商品图自动化工作流。这个项目基于 ACE 方法论组织推进，用于数据分层、候选生成、人工复核、错误放行控制、失败诊断和版本冻结。",
-  },
-  {
-    href: "#build",
-    text: "AI PPT Workflow: 工程化 AI 演示文稿制作流程。这个项目基于 ACE 的分阶段工程流程推进，从任务预检、内容战略、逐页计划到静态版验收和动效增量施工。",
-  },
-  {
-    href: "/docs/AI_TOOL_REVIEWS.md",
-    text: "AI Tool Reviews: Building · 开源 AI 工具与生产力方案评测记录。这个栏目使用 ACE 的工作流视角评估 AI 工具、开源项目和生产力方案是否值得进入真实工作流。",
-  },
-];
+].filter(Boolean);
 ---
 
 <Layout>
@@ -185,16 +189,16 @@ const projects = [
       <div class="writing__grid">
         <a class="feat" href="#build" data-reveal>
           <span class="feat__frame">
-            <img class="feat__img" src="/images/anchor-writing-feature.svg" alt="" loading="lazy" />
+            <img class="feat__img" src={featureWriting?.data.image ?? "/images/anchor-writing-feature.svg"} alt="" loading="lazy" />
             <span class="feat__tick feat__tick--tl"></span>
             <span class="feat__tick feat__tick--br"></span>
           </span>
           <div class="feat__body">
             <span class="feat__idx">01</span>
-            <h3 class="feat__title">ACE 是什么</h3>
-            <p class="feat__dek">解释 ACE / Anchor Capability Engineering 的基本定位、核心组成和项目价值。它不是单个工具，而是一套组织 AI Agent 参与复杂任务的工作方式。</p>
-            <div class="feat__meta"><span class="feat__tag">AI Engineering</span><span class="dotsep"></span><span>Building</span></div>
-            <span class="feat__read">查看方法 <span class="arr">→</span></span>
+            <h3 class="feat__title">{featureWriting?.data.title ?? "ACE 是什么"}</h3>
+            <p class="feat__dek">{featureWriting?.data.summary}</p>
+            <div class="feat__meta"><span class="feat__tag">{featureWriting?.data.category ?? "AI Engineering"}</span><span class="dotsep"></span><span>{featureWriting?.data.status ?? "Building"}</span></div>
+            <span class="feat__read">{featureWriting?.data.linkLabel ?? "查看方法"} <span class="arr">→</span></span>
           </div>
         </a>
 
@@ -282,7 +286,7 @@ NOTE      workflows before products
         <span class="queue__label">queued</span>
         <span class="queue__brace">&#123;</span>
         <ul>
-          {projects.map((project) => <ProjectCard {...project} />)}
+          {projectCards.map((project) => <ProjectCard {...project} />)}
         </ul>
       </div>
       <div class="build__ruler" aria-hidden="true">
