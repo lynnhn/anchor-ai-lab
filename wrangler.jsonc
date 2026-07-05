@@ -1,12 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "sac-ai",
+  "name": "anchor-ai-lab",
   "compatibility_date": "2026-06-29",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "editorial-manifesto"
+    "directory": "anchor-ai-lab-astro/dist"
   },
   "compatibility_flags": [
     "nodejs_compat"
