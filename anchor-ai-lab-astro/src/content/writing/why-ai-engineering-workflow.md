@@ -9,7 +9,7 @@ tags:
   - "ACE"
 featured: true
 order: 4
-href: "#build"
+href: "/writing/why-ai-engineering-workflow"
 image: "/images/anchor-work-workflow.svg"
 relatedProject: "ace"
 ---

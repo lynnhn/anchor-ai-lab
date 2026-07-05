@@ -1,0 +1,52 @@
+---
+import Layout from "../../components/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("writing");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title.replaceAll("<br />", " ")} - Anchor AI Lab`}>
+  <Header base="/" />
+  <main class="detail">
+    <article class="detail__inner">
+      <a class="detail__back" href="/">← 返回首页</a>
+      <p class="detail__eyebrow">{entry.data.category} · {entry.data.status}</p>
+      <h1 class="detail__title" set:html={entry.data.title}></h1>
+      <p class="detail__summary">{entry.data.summary}</p>
+      <div class="detail__tags">
+        {entry.data.tags.map((tag) => <span>{tag}</span>)}
+      </div>
+      <div class="detail__body">
+        <Content />
+      </div>
+      <a class="detail__back detail__back--bottom" href="/">← 返回首页</a>
+    </article>
+  </main>
+  <Footer showTop={false} />
+</Layout>
+
+<style>
+  .detail{min-height:100vh;padding:calc(var(--nav-h) + 72px) var(--pad-x) 64px;background:var(--paper);}
+  .detail__inner{max-width:820px;margin:0 auto;color:var(--ink);}
+  .detail__back{display:inline-flex;margin-bottom:36px;font-family:var(--sans);font-size:13px;letter-spacing:.04em;color:var(--muted);}
+  .detail__back:hover{color:var(--accent);}
+  .detail__eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+  .detail__title{font-family:var(--serif-cjk);font-size:clamp(44px,7vw,82px);line-height:1.05;font-weight:500;margin:0 0 24px;}
+  .detail__summary{font-family:var(--sans-cjk);font-size:clamp(17px,2vw,22px);line-height:1.65;color:var(--ink-soft);margin:0 0 24px;}
+  .detail__tags{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 48px;}
+  .detail__tags span{font-family:var(--sans);font-size:11px;letter-spacing:.08em;border:1px solid var(--line);padding:7px 10px;color:var(--muted);}
+  .detail__body{font-family:var(--sans-cjk);font-size:16px;line-height:1.9;color:var(--ink-soft);}
+  .detail__body p{margin:0 0 18px;}
+  .detail__back--bottom{margin-top:44px;margin-bottom:0;}
+</style>

@@ -9,7 +9,7 @@ tags:
   - "ACE"
 featured: true
 order: 2
-href: "#build"
+href: "/projects/temucanvas"
 relatedProject: "ace"
 ---
 

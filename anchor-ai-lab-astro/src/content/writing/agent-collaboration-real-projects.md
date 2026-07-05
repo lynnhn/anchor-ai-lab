@@ -9,7 +9,7 @@ tags:
   - "Workflow"
 featured: true
 order: 2
-href: "#build"
+href: "/writing/agent-collaboration-real-projects"
 image: "/images/anchor-work-ace.svg"
 relatedProject: "ace"
 ---

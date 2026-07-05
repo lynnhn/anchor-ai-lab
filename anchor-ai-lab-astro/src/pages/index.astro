@@ -187,7 +187,7 @@ const projectCards = [
       </header>
 
       <div class="writing__grid">
-        <a class="feat" href="#build" data-reveal>
+        <a class="feat" href={featureWriting?.data.href ?? "/writing/what-is-ace"} data-reveal>
           <span class="feat__frame">
             <img class="feat__img" src={featureWriting?.data.image ?? "/images/anchor-writing-feature.svg"} alt="" loading="lazy" />
             <span class="feat__tick feat__tick--tl"></span>

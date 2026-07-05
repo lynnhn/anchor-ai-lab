@@ -10,7 +10,7 @@ tags:
 featured: true
 order: 4
 linkLabel: "查看文档"
-href: "/docs/AI_TOOL_REVIEWS.md"
+href: "/tools/ai-tool-reviews"
 image: "/images/anchor-work-reviews.svg"
 relatedProject: "ace"
 ---

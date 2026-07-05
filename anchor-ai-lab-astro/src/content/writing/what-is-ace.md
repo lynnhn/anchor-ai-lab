@@ -10,7 +10,7 @@ tags:
 featured: true
 order: 1
 linkLabel: "查看方法"
-href: "#build"
+href: "/writing/what-is-ace"
 image: "/images/anchor-writing-feature.svg"
 relatedProject: "ace"
 ---

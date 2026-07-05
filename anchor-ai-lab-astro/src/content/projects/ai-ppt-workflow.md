@@ -9,7 +9,7 @@ tags:
   - "ACE"
 featured: true
 order: 3
-href: "#build"
+href: "/projects/ai-ppt-workflow"
 relatedProject: "ace"
 ---
 
