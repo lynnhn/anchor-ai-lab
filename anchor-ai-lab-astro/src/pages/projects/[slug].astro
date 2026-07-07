@@ -14,9 +14,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const canonicalPath = `/projects/${entry.id}/`;
 ---
 
-<Layout title={`${entry.data.title} - Anchor AI Lab`}>
+<Layout
+  title={`${entry.data.title} | Anchor AI Lab`}
+  description={entry.data.summary}
+  canonicalPath={canonicalPath}
+  type="article"
+>
   <Header base="/" />
   <main class="detail">
     <article class="detail__inner">

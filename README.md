@@ -2,15 +2,19 @@
 
 启锚 · 探索智能边界。
 
-Anchor AI Lab 是一个静态个人 AI 工程实践站，记录 AI 工程实践、Agent 协作、开源工具评测和个人工作流构建。
+Anchor AI Lab is a static personal AI engineering practice site for agent workflows, project notes, open-source tool reviews, and personal workflow building.
 
 Inspired by Sac-Y/sac-ai.com.
 
+## Live Site
+
+https://anchor-ai-lab.pages.dev/
+
 ## Project Structure
 
-- `editorial-manifesto/`: v0.1 冻结视觉基线，也是 Astro 迁移的回退版本。后续迁移不直接修改它。
-- `anchor-ai-lab-astro/`: 当前主线版本，使用 Astro + Markdown Content Collections。
-- `docs/`: 项目文档与旧链接兼容文档。
+- `anchor-ai-lab-astro/`: current mainline version, built with Astro + Markdown Content Collections.
+- `editorial-manifesto/`: v0.1 frozen visual baseline and fallback reference for the Astro migration.
+- `docs/`: project documentation and compatibility docs.
 
 ## Astro Local Development
 
@@ -21,6 +25,13 @@ npm run dev
 npm run build
 ```
 
+## Cloudflare Pages
+
+- Framework preset: Astro
+- Root directory: `anchor-ai-lab-astro`
+- Build command: `npm run build`
+- Output directory: `dist`
+
 ## Legacy Preview
 
-如需查看 v0.1 冻结基线，可直接打开 `editorial-manifesto/index.html`。
+To view the v0.1 frozen baseline, open `editorial-manifesto/index.html` directly.

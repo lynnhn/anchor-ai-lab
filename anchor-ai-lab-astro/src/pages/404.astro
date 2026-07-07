@@ -1,0 +1,31 @@
+---
+import Layout from "../components/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Page not found | Anchor AI Lab"
+  description="The requested page could not be found on Anchor AI Lab."
+  canonicalPath="/404/"
+>
+  <Header base="/" />
+  <main class="not-found">
+    <section class="not-found__inner">
+      <p class="not-found__eyebrow">404</p>
+      <h1>Page not found</h1>
+      <p>The page you are looking for does not exist or has moved.</p>
+      <a href="/">Return home <span aria-hidden="true">-></span></a>
+    </section>
+  </main>
+  <Footer showTop={false} />
+</Layout>
+
+<style>
+  .not-found{min-height:100vh;padding:calc(var(--nav-h) + 96px) var(--pad-x) 72px;background:var(--paper);display:flex;align-items:center;}
+  .not-found__inner{max-width:760px;margin:0 auto;color:var(--ink);}
+  .not-found__eyebrow{font-family:var(--sans);font-size:12px;letter-spacing:.18em;color:var(--accent);margin:0 0 20px;}
+  .not-found h1{font-family:var(--serif);font-size:clamp(52px,10vw,116px);line-height:.92;font-weight:500;margin:0 0 24px;}
+  .not-found p{font-family:var(--sans-cjk);font-size:18px;line-height:1.7;color:var(--ink-soft);margin:0 0 28px;}
+  .not-found a{font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
+</style>
