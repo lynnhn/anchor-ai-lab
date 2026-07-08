@@ -124,9 +124,9 @@ main{position:relative;z-index:2;}
 body{
   color:var(--ink);
   background:
-    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/38px 38px,
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/38px 38px,
-    radial-gradient(circle at 16% 10%,rgba(194,138,58,.12),transparent 34%),
+    radial-gradient(circle at 1px 1px,rgba(16,35,27,.065) 1px,transparent 1.4px) 0 0/28px 28px,
+    linear-gradient(90deg,transparent 0 calc(100% - 1px),rgba(16,35,27,.045) calc(100% - 1px)) 0 0/152px 100%,
+    radial-gradient(circle at 16% 10%,rgba(194,138,58,.10),transparent 32%),
     var(--paper);
 }
 
@@ -136,9 +136,11 @@ body::before{
   inset:0;
   z-index:0;
   pointer-events:none;
-  background:linear-gradient(90deg,rgba(16,35,27,.05) 0 1px,transparent 1px 100%);
-  background-size:11px 100%;
-  opacity:.42;
+  background:
+    linear-gradient(90deg,rgba(16,35,27,.08) 0 1px,transparent 1px 100%) left 72px top 120px/1px 72vh no-repeat,
+    linear-gradient(rgba(16,35,27,.08) 0 1px,transparent 1px 100%) left 42px bottom 42px/120px 1px no-repeat,
+    linear-gradient(rgba(16,35,27,.08) 0 1px,transparent 1px 100%) right 42px top 108px/120px 1px no-repeat;
+  opacity:.5;
   mix-blend-mode:multiply;
 }
 

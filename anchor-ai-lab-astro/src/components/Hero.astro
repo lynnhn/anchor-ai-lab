@@ -24,15 +24,27 @@
     </div>
   </div>
   <div class="hero__right" aria-hidden="true">
-    <figure class="portrait">
-      <span class="portrait__axis portrait__axis--x"></span>
-      <span class="portrait__axis portrait__axis--y"></span>
-      <span class="portrait__measure portrait__measure--top">AGENT ROUTE / CAPABILITY MAP</span>
-      <span class="portrait__measure portrait__measure--side">PROMPT → PLAN → BUILD → REVIEW</span>
-      <span class="portrait__node portrait__node--a"></span>
-      <span class="portrait__node portrait__node--b"></span>
-      <span class="portrait__node portrait__node--c"></span>
-      <span class="portrait__stamp">LAB NODE<br />NO FIXED LOCATION</span>
+    <figure class="portrait protocol-card">
+      <svg class="protocol-card__map" viewBox="0 0 720 420" role="presentation" focusable="false">
+        <path class="protocol-card__guide" d="M72 318H648" />
+        <path class="protocol-card__guide protocol-card__guide--soft" d="M132 84H392M470 94H608" />
+        <path class="protocol-card__guide protocol-card__guide--soft" d="M112 112V244M592 166V338" />
+        <path class="protocol-card__route" d="M124 284C196 196 262 210 330 240S468 310 590 144" />
+        <path class="protocol-card__route protocol-card__route--ghost" d="M182 118C260 158 314 148 376 116S496 82 570 118" />
+        <circle class="protocol-card__node protocol-card__node--primary" cx="124" cy="284" r="12" />
+        <circle class="protocol-card__node" cx="268" cy="214" r="8" />
+        <circle class="protocol-card__node" cx="408" cy="260" r="8" />
+        <circle class="protocol-card__node" cx="590" cy="144" r="12" />
+        <circle class="protocol-card__node protocol-card__node--quiet" cx="376" cy="116" r="6" />
+        <path class="protocol-card__tick" d="M92 338v22M172 338v12M252 338v12M332 338v22M412 338v12M492 338v12M572 338v22" />
+      </svg>
+      <span class="protocol-card__label protocol-card__label--top">FIELD TRACE / ROUTE MAP</span>
+      <span class="protocol-card__label protocol-card__label--left">LAB NODE</span>
+      <span class="protocol-card__label protocol-card__label--right">PROTOCOL FLOW</span>
+      <span class="protocol-card__note protocol-card__note--a">SIGNAL<br />PATH</span>
+      <span class="protocol-card__note protocol-card__note--b">REVIEW<br />LOOP</span>
+      <span class="protocol-card__stamp">NO FIXED LOCATION</span>
+      <span class="protocol-card__index">AAL / 0.5 / WORKFLOW NOTES</span>
       <span class="portrait__cross portrait__cross--tl"></span>
       <span class="portrait__cross portrait__cross--br"></span>
     </figure>
