@@ -97,7 +97,7 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
           revealItems.forEach((el) => el.classList.add("is-revealed"));
         }
 
-        const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"TEST", build:"BUILD", contact:"CONTACT" };
+        const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"NOTES", build:"BUILD", contact:"CONTACT" };
         const links = [...document.querySelectorAll(".nav__links a")];
         const setActive = (label) => {
           links.forEach(a =>
