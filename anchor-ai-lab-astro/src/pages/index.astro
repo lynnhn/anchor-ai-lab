@@ -73,6 +73,14 @@ const projectCards = [
   description="Personal AI engineering lab for agent workflows, project notes, and tool reviews."
   canonicalPath="/"
 >
+  <script is:inline>
+    document.documentElement.classList.add("hero-entrance-js");
+    window.setTimeout(() => {
+      if (!document.documentElement.classList.contains("hero-entrance-complete")) {
+        document.documentElement.classList.add("hero-entrance-fallback");
+      }
+    }, 2200);
+  </script>
   <Header />
 
   <div class="rail" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -341,3 +349,7 @@ NOTE      workflows before products
     </section>
   </main>
 </Layout>
+
+<script>
+  import "../scripts/heroEntrance.ts";
+</script>

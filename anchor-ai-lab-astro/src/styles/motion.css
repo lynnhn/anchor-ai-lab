@@ -1,4 +1,4 @@
-/* v0.5.3 motion polish: elegant first-screen entrance */
+/* v0.5.3 motion polish: Anime.js-driven first-screen entrance */
 
 :root{
   --motion-fast:220ms;
@@ -7,126 +7,54 @@
   --motion-ease:cubic-bezier(.22,1,.36,1);
 }
 
-.hero__labmark,
-.hero__wordmark,
-.hero__kicker,
-.hero__slogan,
-.hero__protocol,
-.hero__cta{
+.hero-entrance-js [data-hero-header],
+.hero-entrance-js [data-hero-field-note],
+.hero-entrance-js [data-hero-title],
+.hero-entrance-js [data-hero-eyebrow],
+.hero-entrance-js [data-hero-subtitle],
+.hero-entrance-js [data-hero-meta],
+.hero-entrance-js [data-hero-actions],
+.hero-entrance-js [data-protocol-panel],
+.hero-entrance-js [data-protocol-node],
+.hero-entrance-js [data-protocol-label]{
+  opacity:0;
   will-change:opacity,transform;
 }
 
-.nav{
-  opacity:0;
-  transform:translateY(-10px);
+.hero-entrance-js [data-protocol-path],
+.hero-entrance-js [data-protocol-loop]{
+  will-change:stroke-dashoffset,opacity;
 }
 
-.is-ready .nav{
-  animation:header-drop 520ms var(--motion-ease) 120ms forwards;
+.hero-entrance-fallback [data-hero-header],
+.hero-entrance-fallback [data-hero-field-note],
+.hero-entrance-fallback [data-hero-title],
+.hero-entrance-fallback [data-hero-eyebrow],
+.hero-entrance-fallback [data-hero-subtitle],
+.hero-entrance-fallback [data-hero-meta],
+.hero-entrance-fallback [data-hero-actions],
+.hero-entrance-fallback [data-protocol-panel],
+.hero-entrance-fallback [data-protocol-node],
+.hero-entrance-fallback [data-protocol-label],
+.hero-entrance-complete [data-hero-header],
+.hero-entrance-complete [data-hero-field-note],
+.hero-entrance-complete [data-hero-title],
+.hero-entrance-complete [data-hero-eyebrow],
+.hero-entrance-complete [data-hero-subtitle],
+.hero-entrance-complete [data-hero-meta],
+.hero-entrance-complete [data-hero-actions],
+.hero-entrance-complete [data-protocol-panel],
+.hero-entrance-complete [data-protocol-node],
+.hero-entrance-complete [data-protocol-label]{
+  opacity:1;
+  transform:none;
 }
-
-.hero__labmark,
-.hero__wordmark,
-.hero__kicker,
-.hero__slogan,
-.hero__protocol,
-.hero__cta{
-  opacity:0;
-  transform:translateY(12px);
-}
-
-.hero__wordmark{
-  transform:translateY(18px);
-  letter-spacing:.018em;
-}
-
-.is-ready .hero__labmark{animation:hero-fade-up 620ms var(--motion-ease) 180ms forwards;}
-.is-ready .hero__wordmark{animation:hero-title-in 760ms var(--motion-ease) 280ms forwards;}
-.is-ready .hero__kicker{animation:hero-fade-up 620ms var(--motion-ease) 420ms forwards;}
-.is-ready .hero__slogan{animation:hero-fade-up 680ms var(--motion-ease) 480ms forwards;}
-.is-ready .hero__protocol{animation:hero-fade-up 620ms var(--motion-ease) 560ms forwards;}
-.is-ready .hero__cta{animation:hero-fade-up 620ms var(--motion-ease) 700ms forwards;}
 
 .protocol-card{
-  opacity:0;
-  transform:translateY(14px);
   transition:
     border-color var(--motion-fast) var(--motion-ease),
     background var(--motion-fast) var(--motion-ease);
 }
-
-.is-ready .protocol-card{
-  animation:protocol-card-in 720ms var(--motion-ease) 300ms forwards;
-}
-
-.protocol-card__guide,
-.protocol-card__tick{
-  opacity:0;
-}
-
-.protocol-card__route{
-  stroke-dasharray:760;
-  stroke-dashoffset:760;
-}
-
-.protocol-card__route--ghost{
-  stroke-dasharray:6 12;
-  stroke-dashoffset:42;
-  opacity:0;
-}
-
-.protocol-card__node{
-  opacity:0;
-  transform-box:fill-box;
-  transform-origin:center;
-  transform:scale(.74);
-}
-
-.is-ready .protocol-card__guide,
-.is-ready .protocol-card__tick{
-  animation:protocol-fade var(--motion-med) var(--motion-ease) 420ms forwards;
-}
-
-.is-ready .protocol-card__route{
-  animation:protocol-draw 1080ms var(--motion-ease) 360ms forwards;
-}
-
-.is-ready .protocol-card__route--ghost{
-  animation:
-    protocol-loop-in 760ms var(--motion-ease) 760ms forwards;
-}
-
-.is-ready .protocol-card__node{
-  animation:protocol-node var(--motion-med) var(--motion-ease) forwards;
-}
-
-.is-ready .protocol-card__node:nth-of-type(1){animation-delay:620ms;}
-.is-ready .protocol-card__node:nth-of-type(2){animation-delay:740ms;}
-.is-ready .protocol-card__node:nth-of-type(3){animation-delay:860ms;}
-.is-ready .protocol-card__node:nth-of-type(4){animation-delay:980ms;}
-.is-ready .protocol-card__node:nth-of-type(5){animation-delay:1100ms;}
-
-.protocol-card__label,
-.protocol-card__note,
-.protocol-card__stamp,
-.protocol-card__index,
-.portrait__cross{
-  opacity:0;
-  transform:translateY(6px);
-}
-
-.is-ready .protocol-card__label,
-.is-ready .protocol-card__note,
-.is-ready .protocol-card__stamp,
-.is-ready .protocol-card__index,
-.is-ready .portrait__cross{
-  animation:protocol-fade-up var(--motion-med) var(--motion-ease) 760ms forwards;
-}
-
-.is-ready .protocol-card__note{animation-delay:900ms;}
-.is-ready .protocol-card__stamp,
-.is-ready .protocol-card__index{animation-delay:980ms;}
-.is-ready .portrait__cross{animation-delay:1080ms;}
 
 .nav__links a{
   position:relative;
