@@ -1,4 +1,4 @@
-import { createTimeline } from "animejs";
+import { animate } from "animejs";
 
 const readyClass = "motion-complete";
 
@@ -36,7 +36,12 @@ const initHeroEntrance = () => {
   const hero = document.querySelector<HTMLElement>("[data-hero-entrance]");
   if (!hero) return;
 
-  document.documentElement.classList.remove("motion-fallback", readyClass);
+  document.documentElement.classList.remove("motion-started", "motion-fallback", readyClass);
+  hero.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+    el.classList.remove("is-revealed");
+    el.removeAttribute("data-reveal");
+    el.style.removeProperty("--reveal-delay");
+  });
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reducedMotion) {
@@ -98,49 +103,43 @@ const initHeroEntrance = () => {
     reviewLoop.style.strokeDashoffset = "42";
   }
 
-  const timeline = createTimeline({
-    defaults: {
-      ease: "outExpo",
-    },
-  });
+  document.documentElement.classList.add("motion-started");
 
-  timeline
-    .add(header, { opacity: 1, y: 0, duration: 650 }, 150)
-    .add(fieldNote, { opacity: 1, y: 0, duration: 700 }, 350)
-    .add(title, { opacity: 1, y: 0, letterSpacing: "0em", duration: 1150 }, 650)
-    .add(eyebrow, { opacity: 1, y: 0, duration: 850 }, 1100)
-    .add(subtitle, { opacity: 1, y: 0, duration: 900 }, 1350)
-    .add(meta, { opacity: 1, y: 0, duration: 900 }, 1650)
-    .add(actions, { opacity: 1, y: 0, duration: 900 }, 1950)
-    .add(panel, { opacity: 1, y: 0, duration: 900 }, 700);
+  animate(header, { opacity: 1, y: 0, duration: 530, delay: 120, ease: "outExpo" });
+  animate(fieldNote, { opacity: 1, y: 0, duration: 600, delay: 300, ease: "outExpo" });
+  animate(title, { opacity: 1, y: 0, letterSpacing: "0em", duration: 700, delay: 750, ease: "outExpo" });
+  animate(eyebrow, { opacity: 1, y: 0, duration: 700, delay: 1050, ease: "outExpo" });
+  animate(subtitle, { opacity: 1, y: 0, duration: 800, delay: 1250, ease: "outExpo" });
+  animate(meta, { opacity: 1, y: 0, duration: 800, delay: 1550, ease: "outExpo" });
+  animate(actions, { opacity: 1, y: 0, duration: 600, delay: 2350, ease: "outExpo" });
+  animate(panel, { opacity: 1, y: 0, duration: 820, delay: 750, ease: "outExpo" });
 
   if (mainPath) {
-    timeline.add(mainPath, { opacity: 1, strokeDashoffset: 0, duration: 2200, ease: "outCubic" }, 950);
+    animate(mainPath, { opacity: 1, strokeDashoffset: 0, duration: 2500, delay: 650, ease: "inOutSine" });
   }
 
   nodes.forEach((node, index) => {
-    timeline.add(node, { opacity: 1, scale: 1, duration: 650, ease: "outExpo" }, 1350 + index * 280);
+    animate(node, { opacity: 1, scale: 1, duration: 620, delay: 1250 + index * 300, ease: "outExpo" });
   });
 
   if (reviewLoop) {
-    timeline
-      .add(reviewLoop, { opacity: .48, strokeDashoffset: 0, duration: 900 }, 2400)
-      .add(reviewLoop, { strokeDashoffset: -18, duration: 1200, ease: "outCubic" }, 3300);
+    animate(reviewLoop, { opacity: .48, strokeDashoffset: 0, duration: 820, delay: 2300, ease: "outExpo" });
+    animate(reviewLoop, { strokeDashoffset: -18, duration: 1200, delay: 3300, ease: "outCubic" });
   }
 
   labels.forEach((label, index) => {
-    timeline.add(label, { opacity: 1, y: 0, duration: 700 }, 2600 + Math.min(index, 6) * 120);
+    animate(label, { opacity: 1, y: 0, duration: 650, delay: 2450 + Math.min(index, 6) * 115, ease: "outExpo" });
   });
 
   const primaryNode = nodes[0];
   const terminalNode = nodes[3];
   if (primaryNode) {
-    timeline.add(primaryNode, { scale: 1.045, duration: 760, ease: "inOutSine" }, 3380);
-    timeline.add(primaryNode, { scale: 1, duration: 760, ease: "outCubic" }, 4140);
+    animate(primaryNode, { scale: 1.04, duration: 720, delay: 3300, ease: "inOutSine" });
+    animate(primaryNode, { scale: 1, duration: 680, delay: 4020, ease: "outCubic" });
   }
   if (terminalNode) {
-    timeline.add(terminalNode, { scale: 1.035, duration: 720, ease: "inOutSine" }, 3680);
-    timeline.add(terminalNode, { scale: 1, duration: 680, ease: "outCubic" }, 4400);
+    animate(terminalNode, { scale: 1.03, duration: 680, delay: 3580, ease: "inOutSine" });
+    animate(terminalNode, { scale: 1, duration: 640, delay: 4260, ease: "outCubic" });
   }
 
   window.setTimeout(() => {
