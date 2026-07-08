@@ -1,6 +1,6 @@
 import { createTimeline } from "animejs";
 
-const readyClass = "hero-entrance-complete";
+const readyClass = "motion-complete";
 
 const showImmediately = (root: ParentNode = document) => {
   const items = root.querySelectorAll<HTMLElement>(
@@ -29,12 +29,14 @@ const showImmediately = (root: ParentNode = document) => {
     path.style.strokeDashoffset = "0";
   });
 
-  document.documentElement.classList.add(readyClass);
+  document.documentElement.classList.add(readyClass, "hero-entrance-complete");
 };
 
 const initHeroEntrance = () => {
   const hero = document.querySelector<HTMLElement>("[data-hero-entrance]");
   if (!hero) return;
+
+  document.documentElement.classList.remove("motion-fallback", readyClass);
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reducedMotion) {
@@ -62,14 +64,14 @@ const initHeroEntrance = () => {
     Object.assign(el.style, extra);
   };
 
-  setInitial(header, -10);
-  setInitial(fieldNote, 10);
-  setInitial(title, 28, { letterSpacing: ".03em" });
-  setInitial(eyebrow, 12);
-  setInitial(subtitle, 14);
-  setInitial(meta, 12);
-  setInitial(actions, 12);
-  setInitial(panel, 18);
+  setInitial(header, -12);
+  setInitial(fieldNote, 14);
+  setInitial(title, 36, { letterSpacing: ".035em" });
+  setInitial(eyebrow, 18);
+  setInitial(subtitle, 18);
+  setInitial(meta, 14);
+  setInitial(actions, 14);
+  setInitial(panel, 12);
 
   labels.forEach((el) => {
     const item = el as HTMLElement;
@@ -88,7 +90,7 @@ const initHeroEntrance = () => {
     const length = mainPath.getTotalLength();
     mainPath.style.strokeDasharray = `${length}`;
     mainPath.style.strokeDashoffset = `${length}`;
-    mainPath.style.opacity = "1";
+    mainPath.style.opacity = ".25";
   }
 
   if (reviewLoop) {
@@ -98,39 +100,52 @@ const initHeroEntrance = () => {
 
   const timeline = createTimeline({
     defaults: {
-      ease: "outCubic",
+      ease: "outExpo",
     },
   });
 
   timeline
-    .add(header, { opacity: 1, y: 0, duration: 500 }, 80)
-    .add(fieldNote, { opacity: 1, y: 0, duration: 500 }, 180)
-    .add(title, { opacity: 1, y: 0, letterSpacing: "0em", duration: 800 }, 300)
-    .add(eyebrow, { opacity: 1, y: 0, duration: 500 }, 480)
-    .add(subtitle, { opacity: 1, y: 0, duration: 550 }, 620)
-    .add(meta, { opacity: 1, y: 0, duration: 500 }, 760)
-    .add(actions, { opacity: 1, y: 0, duration: 500 }, 900)
-    .add(panel, { opacity: 1, y: 0, duration: 700 }, 500);
+    .add(header, { opacity: 1, y: 0, duration: 650 }, 150)
+    .add(fieldNote, { opacity: 1, y: 0, duration: 700 }, 350)
+    .add(title, { opacity: 1, y: 0, letterSpacing: "0em", duration: 1150 }, 650)
+    .add(eyebrow, { opacity: 1, y: 0, duration: 850 }, 1100)
+    .add(subtitle, { opacity: 1, y: 0, duration: 900 }, 1350)
+    .add(meta, { opacity: 1, y: 0, duration: 900 }, 1650)
+    .add(actions, { opacity: 1, y: 0, duration: 900 }, 1950)
+    .add(panel, { opacity: 1, y: 0, duration: 900 }, 700);
 
   if (mainPath) {
-    timeline.add(mainPath, { strokeDashoffset: 0, duration: 1150, ease: "outQuart" }, 560);
+    timeline.add(mainPath, { opacity: 1, strokeDashoffset: 0, duration: 2200, ease: "outCubic" }, 950);
   }
 
   nodes.forEach((node, index) => {
-    timeline.add(node, { opacity: 1, scale: 1, duration: 460, ease: "outBack" }, 760 + index * 130);
+    timeline.add(node, { opacity: 1, scale: 1, duration: 650, ease: "outExpo" }, 1350 + index * 280);
   });
 
   if (reviewLoop) {
-    timeline.add(reviewLoop, { opacity: .48, strokeDashoffset: 0, duration: 620 }, 1120);
+    timeline
+      .add(reviewLoop, { opacity: .48, strokeDashoffset: 0, duration: 900 }, 2400)
+      .add(reviewLoop, { strokeDashoffset: -18, duration: 1200, ease: "outCubic" }, 3300);
   }
 
   labels.forEach((label, index) => {
-    timeline.add(label, { opacity: 1, y: 0, duration: 420 }, 1200 + Math.min(index, 5) * 45);
+    timeline.add(label, { opacity: 1, y: 0, duration: 700 }, 2600 + Math.min(index, 6) * 120);
   });
 
+  const primaryNode = nodes[0];
+  const terminalNode = nodes[3];
+  if (primaryNode) {
+    timeline.add(primaryNode, { scale: 1.045, duration: 760, ease: "inOutSine" }, 3380);
+    timeline.add(primaryNode, { scale: 1, duration: 760, ease: "outCubic" }, 4140);
+  }
+  if (terminalNode) {
+    timeline.add(terminalNode, { scale: 1.035, duration: 720, ease: "inOutSine" }, 3680);
+    timeline.add(terminalNode, { scale: 1, duration: 680, ease: "outCubic" }, 4400);
+  }
+
   window.setTimeout(() => {
-    document.documentElement.classList.add(readyClass);
-  }, 1850);
+    showImmediately();
+  }, 5000);
 };
 
 if (document.readyState === "loading") {

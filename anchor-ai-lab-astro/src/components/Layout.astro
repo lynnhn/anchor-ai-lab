@@ -25,6 +25,14 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      document.documentElement.classList.add("js");
+      window.setTimeout(() => {
+        if (!document.documentElement.classList.contains("motion-complete")) {
+          document.documentElement.classList.add("motion-fallback");
+        }
+      }, 6500);
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />

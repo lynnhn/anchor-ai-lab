@@ -7,45 +7,45 @@
   --motion-ease:cubic-bezier(.22,1,.36,1);
 }
 
-.hero-entrance-js [data-hero-header],
-.hero-entrance-js [data-hero-field-note],
-.hero-entrance-js [data-hero-title],
-.hero-entrance-js [data-hero-eyebrow],
-.hero-entrance-js [data-hero-subtitle],
-.hero-entrance-js [data-hero-meta],
-.hero-entrance-js [data-hero-actions],
-.hero-entrance-js [data-protocol-panel],
-.hero-entrance-js [data-protocol-node],
-.hero-entrance-js [data-protocol-label]{
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-header],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-field-note],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-title],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-eyebrow],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-subtitle],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-meta],
+html.js:not(.motion-complete):not(.motion-fallback) [data-hero-actions],
+html.js:not(.motion-complete):not(.motion-fallback) [data-protocol-panel],
+html.js:not(.motion-complete):not(.motion-fallback) [data-protocol-node],
+html.js:not(.motion-complete):not(.motion-fallback) [data-protocol-label]{
   opacity:0;
   will-change:opacity,transform;
 }
 
-.hero-entrance-js [data-protocol-path],
-.hero-entrance-js [data-protocol-loop]{
+html.js:not(.motion-complete):not(.motion-fallback) [data-protocol-path],
+html.js:not(.motion-complete):not(.motion-fallback) [data-protocol-loop]{
   will-change:stroke-dashoffset,opacity;
 }
 
-.hero-entrance-fallback [data-hero-header],
-.hero-entrance-fallback [data-hero-field-note],
-.hero-entrance-fallback [data-hero-title],
-.hero-entrance-fallback [data-hero-eyebrow],
-.hero-entrance-fallback [data-hero-subtitle],
-.hero-entrance-fallback [data-hero-meta],
-.hero-entrance-fallback [data-hero-actions],
-.hero-entrance-fallback [data-protocol-panel],
-.hero-entrance-fallback [data-protocol-node],
-.hero-entrance-fallback [data-protocol-label],
-.hero-entrance-complete [data-hero-header],
-.hero-entrance-complete [data-hero-field-note],
-.hero-entrance-complete [data-hero-title],
-.hero-entrance-complete [data-hero-eyebrow],
-.hero-entrance-complete [data-hero-subtitle],
-.hero-entrance-complete [data-hero-meta],
-.hero-entrance-complete [data-hero-actions],
-.hero-entrance-complete [data-protocol-panel],
-.hero-entrance-complete [data-protocol-node],
-.hero-entrance-complete [data-protocol-label]{
+html.motion-fallback [data-hero-header],
+html.motion-fallback [data-hero-field-note],
+html.motion-fallback [data-hero-title],
+html.motion-fallback [data-hero-eyebrow],
+html.motion-fallback [data-hero-subtitle],
+html.motion-fallback [data-hero-meta],
+html.motion-fallback [data-hero-actions],
+html.motion-fallback [data-protocol-panel],
+html.motion-fallback [data-protocol-node],
+html.motion-fallback [data-protocol-label],
+html.motion-complete [data-hero-header],
+html.motion-complete [data-hero-field-note],
+html.motion-complete [data-hero-title],
+html.motion-complete [data-hero-eyebrow],
+html.motion-complete [data-hero-subtitle],
+html.motion-complete [data-hero-meta],
+html.motion-complete [data-hero-actions],
+html.motion-complete [data-protocol-panel],
+html.motion-complete [data-protocol-node],
+html.motion-complete [data-protocol-label]{
   opacity:1;
   transform:none;
 }
@@ -209,6 +209,7 @@
 
   .protocol-card,
   .nav,
+  [data-hero-header],
   .hero__labmark,
   .hero__wordmark,
   .hero__kicker,
