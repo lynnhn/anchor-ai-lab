@@ -861,3 +861,115 @@ body.theme-shoot .cross::after{
     grid-column:auto;
   }
 }
+
+/* v0.5.1 color system polish */
+.writing__title,
+.build__title,
+.build__title,
+.shoot__title{
+  color:var(--color-ink-heading);
+}
+
+.shoot__title{
+  color:var(--color-paper-card);
+}
+
+.writing__cat-title,
+.writing__cat-current,
+.feat__read,
+.build__kicker,
+.build__sub,
+.term__ver,
+.term__ver [data-compile-label],
+.term__pct{
+  color:var(--color-amber);
+}
+
+.writing__cat-current,
+.feat__frame,
+.writing__list,
+.build__terminal,
+.project-node a{
+  border-color:var(--color-line);
+}
+
+.feat__frame,
+.wpost,
+.build__terminal,
+.project-node a{
+  background:rgba(248,244,234,.68);
+}
+
+.feat__frame{
+  background:
+    radial-gradient(circle at 1px 1px,rgba(11,42,31,.04) 1px,transparent 1.4px) 0 0/24px 24px,
+    var(--color-paper-card);
+}
+
+.wpost:hover,
+.project-node a:hover{
+  background:rgba(63,156,149,.065);
+  border-color:rgba(63,156,149,.42);
+}
+
+.wpost__protocol span:first-child,
+.project-node__status{
+  color:var(--color-teal);
+}
+
+.wpost__idx,
+.queue__label,
+.queue__brace{
+  color:rgba(110,117,109,.72);
+}
+
+.build{
+  background:
+    radial-gradient(circle at 70% 24%,rgba(63,156,149,.09),transparent 26%),
+    linear-gradient(180deg,rgba(248,244,234,.80),rgba(243,239,230,.94)),
+    var(--color-paper);
+}
+
+.term__bar{
+  background:rgba(11,42,31,.055);
+  border-bottom-color:rgba(207,199,184,.76);
+}
+
+.term__bar2{
+  border-color:rgba(52,68,59,.38);
+  background:rgba(243,239,230,.76);
+}
+
+.term__bar2 i,
+.term__code::after{
+  background:var(--color-teal);
+}
+
+.term__code,
+.build__queue,
+.project-node__detail{
+  color:var(--color-ink-muted);
+}
+
+.project-node__name,
+.term__code::first-line{
+  color:var(--color-lab-green);
+}
+
+.shoot{
+  --line:rgba(243,239,230,.32);
+  --muted:#A8A198;
+  --ink-soft:#DCD5CA;
+  background:#07110D;
+}
+
+.shoot__rec,
+.shoot__pct,
+.shoot__kicker{
+  color:var(--color-amber);
+}
+
+.shoot__rec i,
+.shoot__track i{
+  background:var(--color-amber);
+}

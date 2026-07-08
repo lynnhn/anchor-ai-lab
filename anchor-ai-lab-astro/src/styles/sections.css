@@ -1162,3 +1162,170 @@ a.cbar__item.is-disabled:hover .cbar__arr{transform:none;color:var(--ink);}
     display:none;
   }
 }
+
+/* v0.5.1 color system polish */
+.hero{
+  background:
+    radial-gradient(circle at 1px 1px,rgba(11,42,31,.044) 1px,transparent 1.4px) 0 0/30px 30px,
+    linear-gradient(105deg,rgba(11,42,31,.034) 0 1px,transparent 1px 100%) 0 0/220px 100%,
+    linear-gradient(180deg,rgba(248,244,234,.94),rgba(243,239,230,.92));
+}
+
+.hero::before{
+  border-color:rgba(207,199,184,.82);
+}
+
+.hero__labmark,
+.hero__protocol span{
+  background:rgba(248,244,234,.78);
+  border-color:rgba(207,199,184,.78);
+}
+
+.hero__wordmark,
+.about__title,
+.contact__title,
+.work__title{
+  color:var(--color-ink-heading);
+}
+
+.hero__kicker,
+.hero__labmark,
+.hero__protocol,
+.protocol-card__label,
+.protocol-card__note,
+.protocol-card__stamp,
+.protocol-card__index{
+  color:var(--color-ink-muted);
+}
+
+.hero__kicker .dot,
+.srow__status i,
+.srow__dot,
+.contact__status .pulse,
+.contact__status .pulse::after{
+  background:var(--color-teal);
+}
+
+.hero__kicker .dot{
+  box-shadow:0 0 0 5px rgba(63,156,149,.12);
+}
+
+.hero__slogan,
+.about__bio p,
+.contact__sub{
+  color:var(--color-ink-soft);
+}
+
+.signal__head{
+  border-bottom-color:var(--color-line-strong);
+}
+
+.signal__legend b,
+.contact__kicker,
+.cbar__lbl,
+.bp__sq,
+.flow__node:hover .flow__zh,
+.flow__node:hover .flow__en{
+  color:var(--color-amber);
+}
+
+.flow__node,
+.bp__target{
+  border-color:var(--color-amber);
+}
+
+.flow__link,
+.bp__target::before,
+.bp__target::after,
+.bp__sq{
+  background:var(--color-amber);
+}
+
+.srow > a:hover,
+a.cbar__item:hover{
+  background:rgba(185,130,54,.055);
+}
+
+.srow__bars i{
+  background:var(--color-amber);
+}
+
+.srow__logo--entry,
+.qr,
+.blueprint{
+  background-color:rgba(248,244,234,.62);
+  border-color:var(--color-line-soft);
+}
+
+.protocol-card{
+  border-color:rgba(207,199,184,.92);
+  background:
+    radial-gradient(circle at 24% 26%,rgba(63,156,149,.085),transparent 0 3px,transparent 4px),
+    radial-gradient(circle at 66% 54%,rgba(63,156,149,.085),transparent 0 3px,transparent 4px),
+    linear-gradient(135deg,rgba(185,130,54,.065),transparent 46%),
+    rgba(248,244,234,.54);
+}
+
+.protocol-card::before{
+  border-left-color:rgba(207,199,184,.78);
+  border-bottom-color:rgba(207,199,184,.78);
+}
+
+.protocol-card::after{
+  background:rgba(207,199,184,.72);
+  box-shadow:
+    -420px 212px 0 rgba(207,199,184,.64),
+    -286px 56px 0 rgba(185,130,54,.20);
+}
+
+.protocol-card__guide,
+.protocol-card__tick{
+  stroke:rgba(207,199,184,.86);
+}
+
+.protocol-card__guide--soft{
+  stroke:rgba(207,199,184,.58);
+}
+
+.protocol-card__route{
+  stroke:var(--color-lab-green);
+}
+
+.protocol-card__route--ghost{
+  stroke:var(--color-amber);
+  opacity:.48;
+}
+
+.protocol-card__node{
+  fill:var(--color-paper-card);
+  stroke:var(--color-teal);
+}
+
+.protocol-card__node--primary{
+  fill:rgba(63,156,149,.14);
+  stroke:var(--color-lab-green);
+}
+
+.protocol-card__node--quiet{
+  fill:var(--color-amber);
+}
+
+.protocol-card__note--a{
+  color:var(--color-teal);
+}
+
+.protocol-card__note--b,
+.protocol-card__label--left{
+  color:var(--color-lab-green);
+}
+
+.protocol-card__index{
+  color:rgba(51,65,58,.46);
+}
+
+.contact{
+  background:
+    linear-gradient(180deg,rgba(248,244,234,.62),rgba(234,228,216,.88)),
+    radial-gradient(circle at 1px 1px,rgba(11,42,31,.042) 1px,transparent 1.4px) 0 0/34px 34px,
+    var(--color-paper);
+}

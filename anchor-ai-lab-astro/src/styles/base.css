@@ -244,3 +244,70 @@ body::before{
     line-height:1.08;
   }
 }
+
+/* v0.5.1 color system polish */
+body{
+  background:
+    radial-gradient(circle at 1px 1px,rgba(11,42,31,.046) 1px,transparent 1.4px) 0 0/28px 28px,
+    linear-gradient(90deg,transparent 0 calc(100% - 1px),rgba(11,42,31,.034) calc(100% - 1px)) 0 0/152px 100%,
+    radial-gradient(circle at 16% 10%,rgba(185,130,54,.08),transparent 32%),
+    var(--color-paper);
+}
+
+body::before{
+  background:
+    linear-gradient(90deg,rgba(11,42,31,.065) 0 1px,transparent 1px 100%) left 72px top 120px/1px 72vh no-repeat,
+    linear-gradient(rgba(11,42,31,.065) 0 1px,transparent 1px 100%) left 42px bottom 42px/120px 1px no-repeat,
+    linear-gradient(rgba(11,42,31,.065) 0 1px,transparent 1px 100%) right 42px top 108px/120px 1px no-repeat;
+  opacity:.46;
+}
+
+.nav{
+  background:rgba(248,244,234,.88);
+  border-bottom-color:rgba(207,199,184,.74);
+  box-shadow:0 10px 34px -34px rgba(11,42,31,.38);
+}
+
+.nav__brand::before{
+  border-color:var(--color-lab-green);
+  background:var(--color-lab-green);
+  color:var(--color-paper-card);
+}
+
+.nav__links a:hover{
+  color:var(--color-amber);
+}
+
+.nav__links a.is-active{
+  color:var(--color-lab-green);
+}
+
+.nav__stat i{
+  background:var(--color-teal);
+  box-shadow:0 0 0 4px rgba(63,156,149,.12);
+}
+
+.nav__github{
+  color:rgba(17,23,19,.76);
+}
+
+.btn--ghost,
+.btn--link{
+  background:rgba(248,244,234,.38);
+  border-color:var(--color-lab-green);
+  color:var(--color-ink);
+}
+
+.btn--ghost:hover,
+.btn--ghost:active{
+  background:var(--color-lab-green);
+  border-color:var(--color-lab-green);
+  color:var(--color-paper-card);
+}
+
+.btn--link:hover,
+.btn--link:active{
+  color:var(--color-lab-green);
+  border-color:var(--color-amber);
+  background:rgba(185,130,54,.075);
+}

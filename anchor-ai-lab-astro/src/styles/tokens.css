@@ -1,20 +1,37 @@
 /* ───── Design Tokens ───── */
 :root{
-  --paper:#F4F0E7;
-  --surface:#FBF8F1;
-  --surface-dim:#ECE5D7;
-  --lab-green:#10231B;
-  --lab-green-2:#183126;
-  --ink:#111411;
-  --accent:#C28A3A;
-  --signal:#4C9C96;
-  --moss:#6F7F5A;
-  --line:#D8D1C3;
-  --line-strong:#AFA490;
-  --muted:#6f7467;
-  --ink-soft:#29352E;
-  --grid:rgba(16,35,27,.09);
-  --scan:rgba(76,156,150,.18);
+  --color-paper:#F3EFE6;
+  --color-paper-soft:#EAE4D8;
+  --color-paper-card:#F8F4EA;
+  --color-ink:#111713;
+  --color-ink-heading:#0B241A;
+  --color-ink-soft:#33413A;
+  --color-ink-muted:#6E756D;
+  --color-lab-green:#0B2A1F;
+  --color-lab-green-soft:#183A2D;
+  --color-amber:#B98236;
+  --color-amber-soft:#C28A3A;
+  --color-teal:#3F9C95;
+  --color-teal-soft:#5FAEAA;
+  --color-line:#CFC7B8;
+  --color-line-soft:#DDD5C8;
+  --color-line-strong:#34443B;
+
+  --paper:var(--color-paper);
+  --surface:var(--color-paper-card);
+  --surface-dim:var(--color-paper-soft);
+  --lab-green:var(--color-lab-green);
+  --lab-green-2:var(--color-lab-green-soft);
+  --ink:var(--color-ink);
+  --accent:var(--color-amber);
+  --signal:var(--color-teal);
+  --moss:#6D785F;
+  --line:var(--color-line);
+  --line-strong:var(--color-line-strong);
+  --muted:var(--color-ink-muted);
+  --ink-soft:var(--color-ink-soft);
+  --grid:rgba(11,42,31,.055);
+  --scan:rgba(63,156,149,.16);
 
   --serif:'Playfair Display','Noto Serif SC','Songti SC','STSong','SimSun',Georgia,'Times New Roman',serif;
   --serif-cjk:'Noto Serif SC','Songti SC','STSong','SimSun','Playfair Display',Georgia,serif;
@@ -25,7 +42,7 @@
   --pad-x:clamp(32px,5vw,72px);
   --rail-x:48px;
   --ease:cubic-bezier(.22,.61,.36,1);
-  --shadow-soft:0 24px 60px -44px rgba(16,35,27,.42);
+  --shadow-soft:0 24px 60px -44px rgba(11,42,31,.38);
 }
 
 /* ───── 纸张底 + 颗粒纸纹 ───── */
@@ -35,7 +52,7 @@ body{
   color:var(--ink);
   font-family:var(--sans);
   -webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(rgba(26,23,20,.02) 1px,transparent 1px);
+  background-image:radial-gradient(rgba(17,23,19,.018) 1px,transparent 1px);
   background-size:3px 3px;
 }
 body::before{
