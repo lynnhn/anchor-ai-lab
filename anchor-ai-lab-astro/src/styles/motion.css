@@ -1,0 +1,219 @@
+/* v0.5.1 motion polish: subtle protocol and archive interactions */
+
+:root{
+  --motion-fast:220ms;
+  --motion-med:620ms;
+  --motion-slow:1180ms;
+  --motion-ease:cubic-bezier(.22,1,.36,1);
+}
+
+.hero__labmark,
+.hero__wordmark,
+.hero__kicker,
+.hero__slogan,
+.hero__protocol,
+.hero__cta{
+  will-change:opacity,transform;
+}
+
+.hero__labmark{--reveal-delay:80ms;}
+.hero__wordmark{--reveal-delay:160ms;}
+.hero__kicker{--reveal-delay:250ms;}
+.hero__slogan{--reveal-delay:320ms;}
+.hero__protocol{--reveal-delay:420ms;}
+.hero__cta{--reveal-delay:510ms;}
+
+.protocol-card{
+  opacity:0;
+  transform:translateY(14px);
+  transition:
+    opacity var(--motion-med) var(--motion-ease) 220ms,
+    transform var(--motion-med) var(--motion-ease) 220ms,
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease);
+}
+
+.is-ready .protocol-card{
+  opacity:1;
+  transform:none;
+}
+
+.protocol-card__guide,
+.protocol-card__tick{
+  opacity:0;
+  animation:protocol-fade var(--motion-med) var(--motion-ease) 520ms forwards;
+}
+
+.protocol-card__route{
+  stroke-dasharray:760;
+  stroke-dashoffset:760;
+  animation:protocol-draw var(--motion-slow) var(--motion-ease) 520ms forwards;
+}
+
+.protocol-card__route--ghost{
+  stroke-dasharray:6 12;
+  stroke-dashoffset:42;
+  animation:
+    protocol-fade var(--motion-med) var(--motion-ease) 740ms forwards,
+    protocol-drift 5.8s linear 1300ms infinite;
+}
+
+.protocol-card__node{
+  opacity:0;
+  transform-box:fill-box;
+  transform-origin:center;
+  transform:scale(.74);
+  animation:protocol-node var(--motion-med) var(--motion-ease) forwards;
+}
+
+.protocol-card__node:nth-of-type(1){animation-delay:650ms;}
+.protocol-card__node:nth-of-type(2){animation-delay:740ms;}
+.protocol-card__node:nth-of-type(3){animation-delay:830ms;}
+.protocol-card__node:nth-of-type(4){animation-delay:920ms;}
+.protocol-card__node:nth-of-type(5){animation-delay:1010ms;}
+
+.protocol-card__label,
+.protocol-card__note,
+.protocol-card__stamp,
+.protocol-card__index,
+.portrait__cross{
+  opacity:0;
+  transform:translateY(6px);
+  animation:protocol-fade-up var(--motion-med) var(--motion-ease) 760ms forwards;
+}
+
+.protocol-card__note{animation-delay:900ms;}
+.protocol-card__stamp,
+.protocol-card__index{animation-delay:980ms;}
+.portrait__cross{animation-delay:1080ms;}
+
+.nav__links a{
+  position:relative;
+}
+
+.nav__links a::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-8px;
+  height:1px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform var(--motion-fast) var(--motion-ease);
+}
+
+.nav__links a:hover::before,
+.nav__links a.is-active::before{
+  transform:scaleX(1);
+}
+
+.btn{
+  transition:
+    color var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    background var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn:hover .arr,
+.build__cta:hover .arr,
+.writing__all:hover .arr,
+.to-top:hover .arr{
+  transform:translateX(5px);
+}
+
+.srow > a,
+.wpost,
+.project-node a{
+  transition:
+    background var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+}
+
+.srow > a:hover,
+.wpost:hover,
+.project-node a:hover{
+  box-shadow:0 12px 32px -30px rgba(16,35,27,.46);
+}
+
+.srow > a:hover .srow__status,
+.srow > a:hover .srow__logo,
+.wpost:hover .wpost__protocol,
+.project-node a:hover .project-node__status{
+  transform:translateX(3px);
+}
+
+.srow__status,
+.srow__logo,
+.wpost__protocol,
+.project-node__status{
+  transition:
+    color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease);
+}
+
+.wpost:hover .wpost__protocol span:first-child,
+.project-node a:hover .project-node__status{
+  color:var(--lab-green);
+}
+
+@keyframes protocol-draw{
+  to{stroke-dashoffset:0;}
+}
+
+@keyframes protocol-drift{
+  to{stroke-dashoffset:0;}
+}
+
+@keyframes protocol-node{
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes protocol-fade{
+  to{opacity:1;}
+}
+
+@keyframes protocol-fade-up{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+
+  .protocol-card,
+  .protocol-card__guide,
+  .protocol-card__tick,
+  .protocol-card__route,
+  .protocol-card__node,
+  .protocol-card__label,
+  .protocol-card__note,
+  .protocol-card__stamp,
+  .protocol-card__index,
+  .portrait__cross{
+    opacity:1 !important;
+    transform:none !important;
+    stroke-dashoffset:0 !important;
+  }
+}
