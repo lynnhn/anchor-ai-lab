@@ -8,6 +8,6 @@ const { href, logo, name, count = "Building", status = "Building" } = Astro.prop
     <span class="srow__handle">{name}</span>
     <span class="srow__count">{count}</span>
     <span class="srow__bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-    <span class="srow__status">{status}</span>
+      <span class="srow__status"><i aria-hidden="true"></i>{status}</span>
   </a>
 </li>

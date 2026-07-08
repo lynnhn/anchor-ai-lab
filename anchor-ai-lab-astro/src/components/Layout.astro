@@ -37,7 +37,6 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
     <meta name="twitter:description" content={description} />
     {imageUrl && <meta name="twitter:image" content={imageUrl} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+SC:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -72,35 +71,30 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
 
     <slot />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script is:inline>
       const reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-      const hasGSAP = typeof window.gsap !== "undefined";
 
       document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("is-ready");
 
-        if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
-
-        if (hasGSAP && !reduceMotion) {
-          const heroItems = gsap.utils.toArray("#hero [data-reveal]");
-          gsap.set(heroItems, { opacity: 0, y: 20 });
-          gsap.to(heroItems, {
-            opacity: 1, y: 0, duration: 1, ease: "power3.out",
-            stagger: 0.14, delay: 0.25,
-          });
-
-          ["#about", "#writing", "#shoot", "#build", "#contact"].forEach((sel) => {
-            const section = document.querySelector(sel);
-            const items = gsap.utils.toArray(sel + " [data-reveal]");
-            if (!section || !items.length) return;
-            gsap.set(items, { opacity: 0, y: 30 });
-            gsap.to(items, {
-              opacity: 1, y: 0, duration: 1.4, ease: "power3.out", stagger: 0.2,
-              scrollTrigger: { trigger: section, start: "top 76%" },
+        const revealItems = [...document.querySelectorAll("[data-reveal]")];
+        if (reduceMotion) {
+          revealItems.forEach((el) => el.classList.add("is-revealed"));
+        } else if ("IntersectionObserver" in window) {
+          const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-revealed");
+              revealObserver.unobserve(entry.target);
             });
+          }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+
+          revealItems.forEach((el, index) => {
+            el.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+            revealObserver.observe(el);
           });
+        } else {
+          revealItems.forEach((el) => el.classList.add("is-revealed"));
         }
 
         const navMap = { hero:null, about:"ABOUT", writing:"WRITING", shoot:"TEST", build:"BUILD", contact:"CONTACT" };

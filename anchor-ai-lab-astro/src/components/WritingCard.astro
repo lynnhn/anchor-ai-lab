@@ -5,6 +5,7 @@ const { href, index, title, dek, tag, status, image } = Astro.props;
 <a class="wpost" href={href} data-reveal>
   <span class="wpost__idx">{index}</span>
   <div class="wpost__body">
+    <div class="wpost__protocol"><span>NOTE</span><span>{status}</span></div>
     <h3 class="wpost__title" set:html={title}></h3>
     {dek && <p class="wpost__dek">{dek}</p>}
     <div class="wpost__meta"><span class="wpost__tag">{tag}</span><span class="dotsep"></span><span>{status}</span></div>

@@ -1,5 +1,12 @@
 ---
 const { href, text } = Astro.props;
+const [name = "Entry", detail = text] = String(text).split(": ");
 ---
 
-<li><a href={href}>{text}</a></li>
+<li class="project-node">
+  <a href={href}>
+    <span class="project-node__status">ARCHIVE</span>
+    <span class="project-node__name">{name}</span>
+    <span class="project-node__detail">{detail}</span>
+  </a>
+</li>

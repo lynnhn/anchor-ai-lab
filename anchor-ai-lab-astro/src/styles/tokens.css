@@ -1,11 +1,20 @@
 /* ───── Design Tokens ───── */
 :root{
-  --paper:#F4EFE6;
-  --ink:#1A1714;
-  --accent:#F0652E;
-  --line:#C9C0B2;
-  --muted:#7d756a;
-  --ink-soft:#3a342d;
+  --paper:#F4F0E7;
+  --surface:#FBF8F1;
+  --surface-dim:#ECE5D7;
+  --lab-green:#10231B;
+  --lab-green-2:#183126;
+  --ink:#111411;
+  --accent:#C28A3A;
+  --signal:#4C9C96;
+  --moss:#6F7F5A;
+  --line:#D8D1C3;
+  --line-strong:#AFA490;
+  --muted:#6f7467;
+  --ink-soft:#29352E;
+  --grid:rgba(16,35,27,.09);
+  --scan:rgba(76,156,150,.18);
 
   --serif:'Playfair Display','Noto Serif SC','Songti SC','STSong','SimSun',Georgia,'Times New Roman',serif;
   --serif-cjk:'Noto Serif SC','Songti SC','STSong','SimSun','Playfair Display',Georgia,serif;
@@ -16,6 +25,7 @@
   --pad-x:clamp(32px,5vw,72px);
   --rail-x:48px;
   --ease:cubic-bezier(.22,.61,.36,1);
+  --shadow-soft:0 24px 60px -44px rgba(16,35,27,.42);
 }
 
 /* ───── 纸张底 + 颗粒纸纹 ───── */

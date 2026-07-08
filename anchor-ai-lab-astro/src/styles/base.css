@@ -119,3 +119,113 @@ main{position:relative;z-index:2;}
   .btn{white-space:nowrap;}
   .btn .arr{flex:none;}
 }
+
+/* v0.5 visual identity: restrained lab archive layer */
+body{
+  color:var(--ink);
+  background:
+    linear-gradient(var(--grid) 1px,transparent 1px) 0 0/38px 38px,
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/38px 38px,
+    radial-gradient(circle at 16% 10%,rgba(194,138,58,.12),transparent 34%),
+    var(--paper);
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(16,35,27,.05) 0 1px,transparent 1px 100%);
+  background-size:11px 100%;
+  opacity:.42;
+  mix-blend-mode:multiply;
+}
+
+.nav{
+  background:rgba(251,248,241,.86);
+  border-bottom-color:rgba(16,35,27,.16);
+  box-shadow:0 10px 34px -32px rgba(16,35,27,.7);
+}
+
+.nav__brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--sans);
+  font-weight:600;
+  letter-spacing:.01em;
+}
+
+.nav__brand::before{
+  content:"A";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  border:1px solid var(--lab-green);
+  border-radius:50%;
+  color:var(--surface);
+  background:var(--lab-green);
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:700;
+}
+
+.nav__links a,
+.nav__stat{
+  font-family:var(--mono);
+  letter-spacing:.12em;
+}
+
+.nav__stat i{
+  background:var(--signal);
+  box-shadow:0 0 0 4px rgba(76,156,150,.12);
+}
+
+.btn--ghost,
+.btn--link{
+  border-color:var(--lab-green);
+  box-shadow:inset 0 0 0 1px rgba(16,35,27,.05);
+}
+
+.btn--ghost:hover,
+.btn--ghost:active{
+  background:var(--lab-green);
+  border-color:var(--lab-green);
+}
+
+.btn--link:hover,
+.btn--link:active{
+  color:var(--lab-green);
+  border-color:var(--accent);
+  background:rgba(194,138,58,.08);
+}
+
+[data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:
+    opacity .72s var(--ease),
+    transform .72s var(--ease);
+  transition-delay:var(--reveal-delay,0ms);
+}
+
+.is-ready [data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+}
+
+.is-ready [data-reveal].is-revealed{
+  opacity:1;
+  transform:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .is-ready [data-reveal],
+  .is-ready [data-reveal].is-revealed{
+    opacity:1;
+    transform:none;
+  }
+}
