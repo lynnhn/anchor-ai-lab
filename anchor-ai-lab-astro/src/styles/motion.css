@@ -1,4 +1,4 @@
-/* v0.5.3 motion polish: Anime.js-driven first-screen entrance */
+/* v0.5.4 archive reveal: clear first-screen title and protocol drawing */
 
 :root{
   --motion-fast:220ms;
@@ -9,7 +9,6 @@
 
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-header],
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-field-note],
-html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-title],
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-eyebrow],
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-subtitle],
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-meta],
@@ -21,9 +20,48 @@ html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-p
   will-change:opacity,transform;
 }
 
+html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-title]{
+  opacity:1;
+  clip-path:inset(0 100% 0 0);
+  will-change:clip-path,letter-spacing;
+}
+
+html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-field-note]{
+  clip-path:inset(0 100% 0 0);
+}
+
+html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-hero-meta],
+html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-protocol-panel]{
+  clip-path:inset(0 0 100% 0);
+}
+
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-protocol-path],
 html.js:not(.motion-started):not(.motion-complete):not(.motion-fallback) [data-protocol-loop]{
   will-change:stroke-dashoffset,opacity;
+}
+
+.hero{
+  position:relative;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  z-index:3;
+  left:clamp(18px,4vw,72px);
+  right:clamp(18px,4vw,72px);
+  top:clamp(76px,12vh,150px);
+  height:1px;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(90deg, transparent, rgba(29,64,52,.06) 12%, rgba(197,116,49,.22) 48%, rgba(29,64,52,.08) 72%, transparent);
+  box-shadow:0 0 0 1px rgba(29,64,52,.018), 0 18px 44px rgba(197,116,49,.08);
+  transform:translateX(-106%);
+}
+
+html.archive-reveal-active .hero::after{
+  animation:archive-sweep 1450ms cubic-bezier(.22,1,.36,1) 200ms both;
 }
 
 html.motion-fallback [data-hero-header],
@@ -48,6 +86,18 @@ html.motion-complete [data-protocol-node],
 html.motion-complete [data-protocol-label]{
   opacity:1;
   transform:none;
+  clip-path:none;
+}
+
+html.motion-complete [data-hero-title],
+html.motion-fallback [data-hero-title],
+html.motion-complete [data-hero-field-note],
+html.motion-fallback [data-hero-field-note],
+html.motion-complete [data-hero-meta],
+html.motion-fallback [data-hero-meta],
+html.motion-complete [data-protocol-panel],
+html.motion-fallback [data-protocol-panel]{
+  clip-path:none;
 }
 
 .protocol-card{
@@ -197,6 +247,23 @@ html.motion-complete [data-protocol-label]{
   }
 }
 
+@keyframes archive-sweep{
+  0%{
+    opacity:0;
+    transform:translateX(-106%);
+  }
+  18%{
+    opacity:.72;
+  }
+  68%{
+    opacity:.38;
+  }
+  100%{
+    opacity:0;
+    transform:translateX(106%);
+  }
+}
+
 @media (prefers-reduced-motion:reduce){
   *,
   *::before,
@@ -227,6 +294,11 @@ html.motion-complete [data-protocol-label]{
   .portrait__cross{
     opacity:1 !important;
     transform:none !important;
+    clip-path:none !important;
     stroke-dashoffset:0 !important;
+  }
+
+  .hero::after{
+    display:none !important;
   }
 }

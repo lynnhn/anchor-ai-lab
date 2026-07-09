@@ -22,6 +22,7 @@ const showImmediately = (root: ParentNode = document) => {
     el.style.opacity = "1";
     el.style.transform = "none";
     el.style.letterSpacing = "";
+    el.style.clipPath = "";
   });
 
   root.querySelectorAll<SVGPathElement>("[data-protocol-path], [data-protocol-loop]").forEach((path) => {
@@ -29,6 +30,7 @@ const showImmediately = (root: ParentNode = document) => {
     path.style.strokeDashoffset = "0";
   });
 
+  document.documentElement.classList.remove("archive-reveal-active");
   document.documentElement.classList.add(readyClass, "hero-entrance-complete");
 };
 
@@ -70,13 +72,13 @@ const initHeroEntrance = () => {
   };
 
   setInitial(header, -12);
-  setInitial(fieldNote, 14);
-  setInitial(title, 36, { letterSpacing: ".035em" });
-  setInitial(eyebrow, 18);
-  setInitial(subtitle, 18);
-  setInitial(meta, 14);
-  setInitial(actions, 14);
-  setInitial(panel, 12);
+  setInitial(fieldNote, 0, { clipPath: "inset(0 100% 0 0)" });
+  setInitial(title, 0, { opacity: "1", clipPath: "inset(0 100% 0 0)", letterSpacing: ".035em" });
+  setInitial(eyebrow, 22);
+  setInitial(subtitle, 24);
+  setInitial(meta, 0, { clipPath: "inset(0 0 100% 0)" });
+  setInitial(actions, 18);
+  setInitial(panel, 0, { clipPath: "inset(0 0 100% 0)" });
 
   labels.forEach((el) => {
     const item = el as HTMLElement;
@@ -88,7 +90,7 @@ const initHeroEntrance = () => {
     node.style.opacity = "0";
     node.style.transformBox = "fill-box";
     node.style.transformOrigin = "center";
-    node.style.transform = "scale(.7)";
+    node.style.transform = "scale(0)";
   });
 
   if (mainPath) {
@@ -103,23 +105,23 @@ const initHeroEntrance = () => {
     reviewLoop.style.strokeDashoffset = "42";
   }
 
-  document.documentElement.classList.add("motion-started");
+  document.documentElement.classList.add("motion-started", "archive-reveal-active");
 
   animate(header, { opacity: 1, y: 0, duration: 530, delay: 120, ease: "outExpo" });
-  animate(fieldNote, { opacity: 1, y: 0, duration: 600, delay: 300, ease: "outExpo" });
-  animate(title, { opacity: 1, y: 0, letterSpacing: "0em", duration: 700, delay: 750, ease: "outExpo" });
-  animate(eyebrow, { opacity: 1, y: 0, duration: 700, delay: 1050, ease: "outExpo" });
-  animate(subtitle, { opacity: 1, y: 0, duration: 800, delay: 1250, ease: "outExpo" });
-  animate(meta, { opacity: 1, y: 0, duration: 800, delay: 1550, ease: "outExpo" });
+  animate(fieldNote, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 550, delay: 350, ease: "outCubic" });
+  animate(title, { clipPath: "inset(0 0% 0 0)", letterSpacing: "0em", duration: 1050, delay: 650, ease: "inOutCubic" });
+  animate(eyebrow, { opacity: 1, y: 0, duration: 800, delay: 1200, ease: "outExpo" });
+  animate(subtitle, { opacity: 1, y: 0, duration: 800, delay: 1450, ease: "outExpo" });
+  animate(meta, { opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 850, delay: 1700, ease: "outCubic" });
   animate(actions, { opacity: 1, y: 0, duration: 600, delay: 2350, ease: "outExpo" });
-  animate(panel, { opacity: 1, y: 0, duration: 820, delay: 750, ease: "outExpo" });
+  animate(panel, { opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 900, delay: 800, ease: "outCubic" });
 
   if (mainPath) {
-    animate(mainPath, { opacity: 1, strokeDashoffset: 0, duration: 2500, delay: 650, ease: "inOutSine" });
+    animate(mainPath, { opacity: 1, strokeDashoffset: 0, duration: 2400, delay: 800, ease: "inOutSine" });
   }
 
   nodes.forEach((node, index) => {
-    animate(node, { opacity: 1, scale: 1, duration: 620, delay: 1250 + index * 300, ease: "outExpo" });
+    animate(node, { opacity: 1, scale: 1, duration: 520, delay: 1450 + index * 220, ease: "outBack" });
   });
 
   if (reviewLoop) {
@@ -141,6 +143,10 @@ const initHeroEntrance = () => {
     animate(terminalNode, { scale: 1.03, duration: 680, delay: 3580, ease: "inOutSine" });
     animate(terminalNode, { scale: 1, duration: 640, delay: 4260, ease: "outCubic" });
   }
+
+  window.setTimeout(() => {
+    document.documentElement.classList.remove("archive-reveal-active");
+  }, 1800);
 
   window.setTimeout(() => {
     showImmediately();
