@@ -100,10 +100,6 @@ main{position:relative;z-index:2;}
 }
 
 /* ───── reduced motion ───── */
-@media (prefers-reduced-motion:reduce){
-  *{animation:none !important;transition:none !important;}
-}
-
 @media (max-width:600px){
   :root{
     --pad-x:20px;
@@ -228,14 +224,6 @@ body::before{
   font-size:clamp(40px,6.2vw,78px);
   line-height:1.02;
   overflow-wrap:anywhere;
-}
-
-@media (prefers-reduced-motion:reduce){
-  .is-ready [data-reveal],
-  .is-ready [data-reveal].is-revealed{
-    opacity:1;
-    transform:none;
-  }
 }
 
 @media (max-width:600px){
