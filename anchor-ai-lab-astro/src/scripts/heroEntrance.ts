@@ -45,12 +45,6 @@ const initHeroEntrance = () => {
     el.style.removeProperty("--reveal-delay");
   });
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reducedMotion) {
-    showImmediately();
-    return;
-  }
-
   const header = document.querySelector<HTMLElement>("[data-hero-header]");
   const fieldNote = hero.querySelector<HTMLElement>("[data-hero-field-note]");
   const title = hero.querySelector<HTMLElement>("[data-hero-title]");
