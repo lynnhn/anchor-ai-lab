@@ -81,15 +81,11 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
     <slot />
 
     <script is:inline>
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-
       document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("is-ready");
 
         const revealItems = [...document.querySelectorAll("[data-reveal]")];
-        if (reduceMotion) {
-          revealItems.forEach((el) => el.classList.add("is-revealed"));
-        } else if ("IntersectionObserver" in window) {
+        if ("IntersectionObserver" in window) {
           const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
@@ -148,7 +144,7 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
             const el = document.getElementById(id);
             if (el) {
               e.preventDefault();
-              el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+              el.scrollIntoView({ behavior: "smooth" });
               if (window.location.hash !== a.getAttribute("href")) {
                 history.pushState(null, "", a.getAttribute("href"));
               }
@@ -171,7 +167,6 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
         const bar    = root.querySelector("[data-progress-bar]");
         const num    = root.querySelector("[data-progress-num]");
         const measure = document.querySelector("[data-progress-measure]");
-        const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 
         const LINES = [
           "$ anchor lab --map",
@@ -224,12 +219,6 @@ const imageUrl = image ? new URL(image, SITE_URL).toString() : undefined;
 
         const run = () => {
           if (active) return;
-          if (reduce) {
-            codeEl.textContent = FULL;
-            setProgress(100);
-            setLabel(100);
-            return;
-          }
           active = true;
           startedAt = 0;
           codeEl.textContent = "";
